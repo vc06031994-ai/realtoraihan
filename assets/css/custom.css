@@ -2535,3 +2535,15 @@ body .bl-meta-eyebrow {
   padding-inline: 0 !important;
   box-sizing: border-box;
 }
+
+/* Explicit hero correction for 1201px laptop viewport; keep unscoped so it
+   also applies if WordPress omits its standard .home body class. */
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+  .hero .hero__inner h1 {
+    font-size: 55px !important;
+    line-height: .98 !important;
+  }
+  .hero .hero__main {
+    padding-bottom: 72px !important;
+  }
+}
