@@ -13,7 +13,20 @@ $rr_developers = array(
  array('name'=>'BNW','domain'=>'bnw.ae'),
  array('name'=>'Al Hamra','domain'=>'alhamra.ae'),
  array('name'=>'Arada','domain'=>'arada.com'),
- array('name'=>'Tiger','domain'=>'tigergroup.ae')
+ array('name'=>'Tiger','domain'=>'tigergroup.ae'),
+ array('name'=>'Nakheel','domain'=>'nakheel.com'),
+ array('name'=>'Emaar','domain'=>'emaar.com'),
+ array('name'=>'Modon','domain'=>'modon.com'),
+ array('name'=>'Aldar','domain'=>'aldar.com'),
+ array('name'=>'DAMAC','domain'=>'damacproperties.com'),
+ array('name'=>'Danube','domain'=>'danubeproperties.com'),
+ array('name'=>'Azizi','domain'=>'azizidevelopments.com'),
+ array('name'=>'Imtiaz','domain'=>'imtiazdevelopments.com'),
+ array('name'=>'Samana','domain'=>'samanadevelopers.com'),
+ array('name'=>'Omniyat','domain'=>'omniyat.com'),
+ array('name'=>'Meraas','domain'=>'meraas.com'),
+ array('name'=>'Dubai Properties','domain'=>'dp.ae'),
+ array('name'=>'Expo City Developer','domain'=>'expocitydubai.com')
 );
 ?>
 <section class="dev-marquee" aria-label="Developers I work with">
