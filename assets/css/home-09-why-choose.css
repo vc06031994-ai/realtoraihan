@@ -120,7 +120,7 @@
   max-height:0;opacity:0;overflow:hidden;transform:translateY(-4px);
   transition:max-height .55s var(--ease-io),opacity .4s var(--ease-out),
              transform .45s var(--ease-out)}
-.wcr:hover p,.wcr.is-active p{max-height:150px;opacity:1;transform:none}
+.wcr:hover p,.wcr.is-active p{max-height:1000px;opacity:1;transform:none}
 .wcr:hover,.wcr.is-active{padding-left:6px}
 
 /* ---------------- responsive ---------------- */
@@ -206,7 +206,11 @@
 /* Mobile: remove the empty photo placeholder and its reserved height. */
 @media (max-width: 767px) {
   #why-choose .wc__media {
-    display: none !important;
+    display: block !important;
+    position: relative !important;
+    top: auto !important;
+    width: 100% !important;
+    height: clamp(280px, 78vw, 380px) !important;
   }
   #why-choose .wc__grid {
     display: block;
@@ -316,6 +320,27 @@
     padding: 16px 0 !important;
     border-bottom: 1px solid rgba(11, 31, 58, 0.18) !important;
   }
+}
+
+/* Responsive Why Choose details: one active row expands without clipping copy. */
+@media (max-width: 1024px) {
+  #why-choose .wcr p {
+    max-height: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    transform: translateY(-4px) !important;
+  }
+  #why-choose .wcr.is-active p,
+  #why-choose .wcr:focus-visible p {
+    max-height: 1000px !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+}
+@media (max-width: 767px) {
+  #why-choose .wc__media { margin: 0; }
+  #why-choose .wc__shot { display: block !important; }
 }
 
 /* Mobile homepage section spacing */
