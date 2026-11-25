@@ -35,3 +35,19 @@
 
 /* Mobile homepage section spacing */
 @media (max-width: 767px) { .dev-marquee { padding-top: 36px !important; padding-bottom: 36px !important; } }
+
+/* Dual developer marquees: the first group moves left, the second right. */
+.dev-marquee__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.dev-marquee__track--reverse {
+  animation-direction: reverse;
+}
+@media (max-width: 767px) {
+  .dev-marquee__rows { gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dev-marquee__track--reverse { animation: none; }
+}
