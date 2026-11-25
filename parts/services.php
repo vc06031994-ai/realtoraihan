@@ -58,10 +58,10 @@ $service_images = array(
           $classes = 'bento';
           ?>
           <div class="<?php echo esc_attr( $classes ); ?>">
+            <div class="bento__image-box">
+              <img src="<?php echo esc_url( rr_img( ! empty( $row['photo'] ) ? $row['photo'] : '', $service_images[ $service_key ] ) ); ?>" alt="" loading="lazy" decoding="async">
+            </div>
             <div class="bento__body">
-              <div class="bento__image-box">
-                <img src="<?php echo esc_url( rr_img( ! empty( $row['photo'] ) ? $row['photo'] : '', $service_images[ $service_key ] ) ); ?>" alt="" loading="lazy" decoding="async">
-              </div>
               <h3><?php echo esc_html( $row['title'] ); ?></h3>
               <p><?php echo wp_kses_post( $row['text'] ); ?></p>
             </div>
