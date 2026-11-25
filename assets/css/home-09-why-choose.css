@@ -339,7 +339,7 @@
   }
 }
 @media (max-width: 767px) {
-  #why-choose .wc__media { margin: 0; }
+  #why-choose .wc__media { margin: 0 0 16px !important; }
   #why-choose .wc__shot { display: block !important; }
 }
 
