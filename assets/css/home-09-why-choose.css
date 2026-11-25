@@ -9,7 +9,9 @@
 
 /* Fixed Why Choose Me photo: one image for the full section, no slide rail. */
 #why-choose .wc__shot:not(:first-child) { display: none !important; }
-#why-choose .wc__rail { display: none !important; }
+#why-choose .wc__rail,
+#why-choose .wc__cap { display: none !important; }
+#why-choose .wc__media::after { display: none !important; }
 #why-choose .wc__shot:first-child,
 #why-choose .wc__shot:first-child img { opacity: 1; transform: none; }
 
