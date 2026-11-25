@@ -1,0 +1,16 @@
+/* Vend Sans + Zalando Sans, self hosted (no external font service) */
+@font-face {
+  font-family: 'Vend Sans';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url(../fonts/vend-sans-latin.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Zalando Sans';
+  font-style: normal;
+  font-weight: 200 900;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(../fonts/zalando-sans-latin.woff2) format('woff2');
+}

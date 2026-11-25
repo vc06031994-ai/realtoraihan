@@ -1,0 +1,320 @@
+/* 09-why-choose */
+
+/* Ensure the single approved photo remains visible on mobile and desktop. */
+#why-choose .wc__media.rv { opacity: 1 !important; transform: none !important; }
+#why-choose .wc__shot:first-child { display: block !important; opacity: 1 !important; transform: none !important; }
+#why-choose .wc__shot:first-child img { display: block !important; opacity: 1 !important; visibility: visible !important; }
+#why-choose .wc__shot:not(:first-child) { display: none !important; }
+
+
+/* Fixed Why Choose Me photo: one image for the full section, no slide rail. */
+#why-choose .wc__shot:not(:first-child) { display: none !important; }
+#why-choose .wc__rail { display: none !important; }
+#why-choose .wc__shot:first-child,
+#why-choose .wc__shot:first-child img { opacity: 1; transform: none; }
+
+
+/* ==================== SECTION 09 · WHY CHOOSE ME ====================
+   Cream band. Big editorial heading with the CTA inline, then a two-column
+   body: a tall sticky photograph on the left, six hairline-separated rows
+   on the right.
+   The interaction: pointer on a row promotes it — the row widens its pull
+   quote, its line icon draws, and the photograph on the left cross-fades
+   to that point's image plus a caption. Rows also auto-advance.
+   Content: client PDF — six benefit points, verbatim.
+   ================================================================= */
+
+.wc{
+  background:var(--cream);color:var(--navy);position:relative;
+  padding-block:100px;
+}
+.wc__wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+
+/* ---------------- head ---------------- */
+.wc__meta{display:flex;align-items:center;gap:12px;
+  margin-bottom:clamp(16px,2vw,22px)}
+.wc__metaDot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none}
+.wc__metaTx{font-size:.7rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-body);margin:0}
+
+.wc__head{display:grid;grid-template-columns:minmax(0,1fr) auto;
+  align-items:end;gap:clamp(24px,4vw,64px);
+  margin-bottom:clamp(34px,4.4vw,60px)}
+.wc h2{font-size:clamp(1.8rem,3.9vw,3.7rem);line-height:1.04;letter-spacing:-.03em;
+  margin:0;max-width:19ch}
+.wc h2 em{font-style:normal;color:var(--gold)}
+
+.wc__cta{justify-self:start;width:fit-content;flex:none}
+
+/* ---------------- body ---------------- */
+.wc__grid{display:grid;grid-template-columns:minmax(0,0.82fr) minmax(0,1.18fr);
+  gap:clamp(24px,3.4vw,54px);align-items:start}
+
+/* --- left: sticky photograph stack --- */
+.wc__media{position:sticky;top:0;
+  height:clamp(430px,54vw,620px);
+  border-radius:var(--r-lg);overflow:hidden;background:#0B1F3A;
+  isolation:isolate}
+.wc__shot{position:absolute;inset:0;margin:0;opacity:0;
+  transition:opacity .85s var(--ease-out),transform 1.3s var(--ease-out);
+  transform:scale(1.06)}
+.wc__shot.is-on{opacity:1;transform:scale(1)}
+.wc__shot img{width:100%;height:100%;object-fit:cover;display:block;
+  filter:none;border-radius:inherit}
+
+/* bottom-edge gradient only — never a full veil */
+.wc__media::after{content:"";position:absolute;inset:auto 0 0 0;height:58%;
+  z-index:2;pointer-events:none;
+  background:linear-gradient(to top,rgba(8,22,42,.86) 0%,
+    rgba(8,22,42,.42) 46%,transparent 100%)}
+
+.wc__cap{position:absolute;z-index:3;left:0;right:0;bottom:0;
+  padding:clamp(18px,2vw,28px);
+  display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.wc__capTx{min-width:0}
+.wc__capNum{font-family:var(--display);font-size:.72rem;letter-spacing:.16em;
+  color:var(--gold);display:block;margin-bottom:6px;
+  font-variant-numeric:tabular-nums}
+.wc__capLbl{font-family:var(--display);font-weight:400;color:#fff;
+  font-size:clamp(1rem,1.5vw,1.34rem);line-height:1.2;letter-spacing:-.02em;
+  margin:0;max-width:22ch;
+  transition:opacity .3s var(--ease-out),transform .3s var(--ease-out)}
+.wc__capLbl.swap{opacity:0;transform:translateY(8px)}
+
+/* gold progress rail on the photo's right edge */
+.wc__rail{position:absolute;z-index:3;right:clamp(14px,1.6vw,22px);
+  top:clamp(18px,2vw,28px);bottom:auto;height:calc(100% - 2*clamp(18px,2vw,28px));
+  width:2px;background:rgba(255,255,255,.22);border-radius:2px;overflow:hidden}
+.wc__railFill{position:absolute;top:0;left:0;right:0;height:16.66%;
+  background:var(--gold);border-radius:2px;
+  transition:height .55s var(--ease-io)}
+
+/* --- right: hairline rows --- */
+.wc__list{display:flex;flex-direction:column;
+  border-top:1px solid var(--hairline)}
+
+.wcr{
+  position:relative;display:block;
+  padding:clamp(19px,2.2vw,28px) 0;
+  border-bottom:1px solid var(--hairline);
+  text-decoration:none;color:inherit;cursor:pointer;
+  transition:padding-left .5s var(--ease-out);
+}
+/* gold marker that grows in from the left gutter */
+.wcr::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;
+  background:var(--gold);transition:width .6s var(--ease-out)}
+.wcr:hover::before,.wcr.is-active::before{width:100%}
+
+.wcr__main{min-width:0}
+.wcr h3{font-family:var(--display);font-weight:400;margin:0;
+  font-size:clamp(1.06rem,1.55vw,1.42rem);line-height:1.22;letter-spacing:-.024em;
+  color:var(--navy);
+  transition:color .4s var(--ease-out)}
+.wcr:hover h3,.wcr.is-active h3{color:var(--navy)}
+
+.wcr p{margin:8px 0 0;font-size:clamp(.82rem,.92vw,.88rem);line-height:1.62;
+  color:var(--ink-body);max-width:52ch;
+  /* collapsed by default, opens when the row is promoted */
+  max-height:0;opacity:0;overflow:hidden;transform:translateY(-4px);
+  transition:max-height .55s var(--ease-io),opacity .4s var(--ease-out),
+             transform .45s var(--ease-out)}
+.wcr:hover p,.wcr.is-active p{max-height:150px;opacity:1;transform:none}
+.wcr:hover,.wcr.is-active{padding-left:6px}
+
+/* ---------------- responsive ---------------- */
+@media(max-width:1024px){
+  .wc{padding-block:40px}
+  .wc__head{grid-template-columns:1fr;align-items:start;
+    gap:22px}
+  .wc h2{max-width:none}
+  .wc__cta{align-self:start;justify-self:start;width:fit-content}
+  .wc__grid{grid-template-columns:1fr;gap:clamp(20px,3vw,32px)}
+  .wc__media{position:relative;top:auto;
+    height:clamp(300px,44vw,420px)}
+  .wc__list{border-top:1px solid var(--hairline)}
+  .wcr p{max-height:150px;opacity:1;transform:none}
+}
+@media(max-width:560px){
+  .wc{padding-block:30px}
+  .wc__media{height:clamp(260px,68vw,340px);border-radius:var(--r-md)}
+  .wc__cap{padding:16px}
+.wcr {
+  padding: 17px 0 0;
+}
+  .wcr:hover,.wcr.is-active{padding-left:0}
+  .wc__cta{width:100%;max-width:320px;justify-content:center}
+  .wc h2{font-size:clamp(1.6rem,7.4vw,2rem)}
+}
+
+/* ---------------- reveals ---------------- */
+.wc .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.wc .ln > span{display:block;transform:translateY(110%);
+  transition:transform 1.15s var(--ease-out)}
+.wc .ln.is-in > span{transform:none}
+.wc .rv{opacity:0;transform:translateY(22px);
+  transition:opacity .85s var(--ease-out),transform .85s var(--ease-out)}
+.wc .rv.is-in{opacity:1;transform:none}
+.wc .rv.is-in.wc__cta{transition:background .42s var(--ease-out),
+  transform .5s var(--ease-out),box-shadow .42s var(--ease-out)}
+.wc .rv.is-in.wc__cta:hover{transform:translateY(-3px)}
+
+@media (prefers-reduced-motion: reduce){
+  .wc .ln > span{transform:none!important;transition:none!important}
+  .wc .rv{opacity:1!important;transform:none!important;transition:none!important}
+  .wcr p{max-height:none!important;opacity:1!important;transform:none!important;
+    transition:none!important}
+}
+
+/* Why Choose Me: keep benefit descriptions at 16px */
+#why-choose .wcr__main p, #why-choose .wcr p { font-size:16px !important; line-height:1.65 !important; }
+
+
+/* Mobile and tablet refinement: Why Choose Me */
+@media (max-width: 767px) {
+  .wc { padding-block: 34px; }
+  .wc__wrap { padding-inline: 18px; }
+  .wc__meta { margin-bottom: 14px; }
+  .wc__head { gap: 16px; margin-bottom: 24px; }
+  .wc h2 { max-width: 100%; font-size: clamp(1.7rem, 7vw, 2.25rem); line-height: 1.12; }
+  .wc__cta { min-height: 46px; max-width: 100%; }
+  .wc__grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .wc__media { width: 100%; height: clamp(290px, 78vw, 380px); border-radius: 14px; }
+  .wc__cap { padding: 14px 16px; }
+  .wc__capLbl { font-size: 1.05rem; max-width: 24ch; }
+  .wc__rail { right: 12px; top: 14px; height: calc(100% - 28px); }
+  .wc__list { width: 100%; min-width: 0; }
+  .wcr {
+  padding: 17px 0 0;
+}
+  .wcr__main { min-width: 0; }
+  .wcr h3 { font-size: 1.15rem; line-height: 1.3; overflow-wrap: anywhere; }
+  .wcr p, .wcr:hover p, .wcr.is-active p { max-height: none !important; height: auto; overflow: visible; opacity: 1; transform: none; font-size: 16px !important; line-height: 1.6 !important; }
+  .wcr:hover, .wcr.is-active { padding-left: 0; }
+}
+@media (max-width: 380px) {
+  .wc__wrap { padding-inline: 15px; }
+  .wc__media { height: 280px; }
+  .wc__cap { padding: 12px; }
+  .wcr { padding: 15px 0; }
+  .wcr h3 { font-size: 1.08rem; }
+  .wcr p { font-size: 15px !important; }
+}
+
+
+/* Mobile: remove the empty photo placeholder and its reserved height. */
+@media (max-width: 767px) {
+  #why-choose .wc__media {
+    display: none !important;
+  }
+  #why-choose .wc__grid {
+    display: block;
+    gap: 0;
+  }
+  #why-choose .wc__list {
+    margin: 0;
+  }
+  #why-choose.wc {
+    padding-bottom: 24px;
+  }
+}
+
+/* Mobile: benefit rows open on tap (active row), not all at once */
+@media (max-width: 767px) {
+  #why-choose .wcr p { max-height: 0 !important; height: auto; overflow: hidden !important; opacity: 0; transform: translateY(-4px); transition: max-height .45s ease, opacity .3s ease, transform .3s ease; }
+  #why-choose .wcr.is-active p { max-height: 500px !important; overflow: visible !important; opacity: 1; transform: none; }
+  #why-choose .wcr:hover p { max-height: 0 !important; opacity: 0; transform: translateY(-4px); }
+  #why-choose .wcr.is-active:hover p { max-height: 500px !important; opacity: 1; transform: none; }
+}
+
+/* Tablet: keep Why Choose Me descriptions collapsed until hover/focus/active, like desktop. */
+@media (min-width:561px) and (max-width:1024px){
+ #why-choose .wcr p{max-height:0!important;opacity:0!important;overflow:hidden!important;transform:translateY(-4px)!important;transition:max-height .55s var(--ease-io),opacity .4s var(--ease-out),transform .45s var(--ease-out)!important}
+ #why-choose .wcr:hover p,#why-choose .wcr:focus-within p,#why-choose .wcr.is-active p{max-height:150px!important;opacity:1!important;transform:none!important}
+ #why-choose .wcr:hover,#why-choose .wcr:focus-within,#why-choose .wcr.is-active{padding-left:6px}
+}
+
+/* Mobile and tablet: reveal Why Choose Me details on tap/click via the active row state. */
+@media(max-width:1024px){
+ #why-choose .wcr p{max-height:0!important;opacity:0!important;overflow:hidden!important;transform:translateY(-4px)!important;transition:max-height .45s var(--ease-io),opacity .35s var(--ease-out),transform .35s var(--ease-out)!important}
+ #why-choose .wcr.is-active p,#why-choose .wcr:focus-visible p{max-height:180px!important;opacity:1!important;transform:none!important}
+ #why-choose .wcr{cursor:pointer;-webkit-tap-highlight-color:transparent}
+}
+
+/* Why Choose Me: selectable info rows, never navigate to Contact on tap */
+#why-choose .wcr{cursor:pointer}
+@media(max-width:1024px){#why-choose .wcr p{max-height:0!important;opacity:0!important;overflow:hidden!important;transform:translateY(-4px)!important;transition:max-height .45s ease,opacity .3s ease,transform .3s ease!important}#why-choose .wcr.is-active p{max-height:220px!important;opacity:1!important;overflow:visible!important;transform:none!important}#why-choose .wcr:focus-visible{outline:2px solid currentColor;outline-offset:4px}}
+
+/* Tablet and mobile use click/tap only; do not activate on hover. */
+@media(max-width:1024px){#why-choose .wcr:hover p{max-height:0!important;opacity:0!important}#why-choose .wcr.is-active p{max-height:220px!important;opacity:1!important;overflow:visible!important;transform:none!important}}
+
+
+/* Mobile: make the Why Choose Me contact button more compact. */
+@media (max-width: 767px) {
+  #why-choose .wc__cta {
+    width: fit-content;
+    max-width: 240px;
+    min-height: 42px;
+    padding-inline: 24px;
+    justify-self: start;
+  }
+}
+
+
+/* Mobile CTA: enforce compact button width instead of stretching full row. */
+@media (max-width: 767px) {
+  #why-choose .wc__cta {
+    display: inline-flex !important;
+    width: 260px !important;
+    max-width: 100% !important;
+    min-height: 44px !important;
+    justify-self: start !important;
+    align-self: flex-start !important;
+    flex: 0 0 auto !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Mobile only: place the Contact Me CTA after all benefit rows.
+   Desktop and tablet layout remain exactly as before. */
+@media (max-width: 767px) {
+  #why-choose .wc__wrap {
+    display: flex;
+    flex-direction: column;
+  }
+  #why-choose .wc__head,
+  #why-choose .wc__grid {
+    display: contents;
+  }
+  #why-choose .wc__list {
+    order: 2;
+  }
+  #why-choose .wc__cta {
+    order: 3;
+    margin-top: 22px;
+  }
+}
+
+
+/* Mobile only: add breathing room between the section heading
+   and the divider above the first benefit row. */
+@media (max-width: 767px) {
+  #why-choose .wc__head h2 {
+    margin-bottom: 12px !important;
+  }
+}
+
+
+/* Mobile only: clearly separate each Why Choose Me accordion row. */
+@media (max-width: 767px) {
+  #why-choose .wc__list {
+    border-top: 1px solid rgba(11, 31, 58, 0.18) !important;
+  }
+
+  #why-choose .wcr {
+    padding: 16px 0 !important;
+    border-bottom: 1px solid rgba(11, 31, 58, 0.18) !important;
+  }
+}
+
+/* Mobile homepage section spacing */
+@media (max-width: 767px) { .wc { padding-top: 36px !important; padding-bottom: 36px !important; } }

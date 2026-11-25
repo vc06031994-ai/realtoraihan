@@ -1,0 +1,43 @@
+/* Dedicated mobile spacing overrides for the homepage intro section. */
+@media (max-width: 767px) {
+  body.home #intro .home-mobile-spacing {
+    box-sizing: border-box !important;
+    padding: 90px 20px 10px !important;
+  }
+}
+
+/* Center homepage statistic cards and add comfortable mobile card padding. */
+@media (max-width: 560px) {
+  body.home #intro .s2__statsGrid {
+    justify-items: center !important;
+    gap: 16px !important;
+  }
+
+  body.home #intro .s2__statsGrid > .stat2 {
+    width: 100% !important;
+    max-width: 360px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 26px 22px !important;
+    min-height: 160px !important;
+  }
+
+  body.home #intro .s2__statsGrid .stat2__num,
+  body.home #intro .s2__statsGrid .stat2__label {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  body.home #intro .s2__statsGrid .stat2__label {
+    align-items: center !important;
+  }
+
+  body.home #intro .s2__statsGrid .stat2__label span {
+    max-width: 30ch !important;
+    margin-inline: auto !important;
+  }
+}

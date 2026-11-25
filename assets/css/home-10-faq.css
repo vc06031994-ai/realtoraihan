@@ -1,0 +1,238 @@
+/* 10-faq */
+
+/* ==================== SECTION 10 · FAQ ====================
+   Scroll-stack FAQ (reference: chameleogfxstudio.com "Why Choose Us").
+     · left panel is sticky: eyebrow, heading, lede, CTA, progress stepper
+     · right column is a stack of hairline cards with oversized numerals
+     · answers are CLOSED by default and open on click — one at a time
+     · the open card goes gold (numeral, question, border, bottom hairline)
+     · gold spotlight follows the cursor inside a card
+     · the stepper in the rail tracks which card you have scrolled past
+   Content: client PDF — all 10 questions, verbatim.
+   ========================================================= */
+
+.fq{
+  /* overflow:clip (not hidden) — hidden would create a scroll container and
+     silently kill the sticky left panel inside it */
+  position:relative;isolation:isolate;overflow:clip;
+  color:#fff;padding-block:100px;
+  background:#0A1930;
+}
+
+/* ---------------- background photograph ---------------- */
+.fq__bg{position:absolute;inset:0;z-index:-2}
+.fq__bg img{width:100%;height:100%;object-fit:cover;object-position:center 55%;
+  display:block;transform:scale(1.03);will-change:transform}
+.fq__bg::after{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(8,22,42,.92) 0%,rgba(8,22,42,.78) 34%,
+      rgba(8,22,42,.56) 58%,rgba(8,22,42,.50) 100%),
+    linear-gradient(180deg,rgba(8,22,42,.74) 0%,rgba(8,22,42,.20) 26%,
+      rgba(8,22,42,.24) 74%,rgba(8,22,42,.82) 100%)}
+
+.fq__wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter);
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(30px,5vw,76px);align-items:start;position:relative;z-index:1}
+
+/* ---------------- left: sticky panel ---------------- */
+.fq__left{position:sticky;top:clamp(88px,11vh,132px)}
+
+.fq__eyebrow{display:flex;align-items:center;gap:10px;
+  font-size:.775rem;font-weight:600;letter-spacing:.06em;color:#fff;
+  margin:0 0 clamp(16px,2vw,24px)}
+.fq__eyebrow::before{content:"";width:8px;height:8px;border-radius:1px;
+  background:var(--gold);flex:none}
+
+.fq h2{font-family:var(--display);font-weight:400;
+  font-size:clamp(2rem,4.4vw,4.1rem);line-height:1.02;letter-spacing:-.032em;
+  margin:0;max-width:12ch}
+.fq__lede{margin:clamp(18px,2.2vw,26px) 0 0;max-width:34ch;
+  font-size:clamp(.9rem,1vw,.98rem);line-height:1.66;color:rgba(255,255,255,.66)}
+
+.fq__cta{margin-top:clamp(22px,2.8vw,32px);width:fit-content}
+
+/* ---------------- right: card stack ---------------- */
+.fq__list{display:flex;flex-direction:column;gap:clamp(10px,1.1vw,14px)}
+
+.fqi{--mx:50%;--my:50%;
+  position:relative;overflow:hidden;
+  display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(13px,1.8vw,24px);
+  padding:clamp(17px,2.1vw,25px) clamp(16px,2.2vw,27px);
+  border:1px solid rgba(255,255,255,.13);border-radius:18px;
+  background:rgba(10,25,48,.48);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  transition:border-color .55s var(--ease-out),background .55s var(--ease-out),
+             box-shadow .55s var(--ease-out)}
+.fqi.is-open{border-color:rgba(200,163,77,.5);
+  background:rgba(16,36,66,.64);
+  box-shadow:0 22px 54px -30px rgba(0,0,0,.92),0 0 0 1px rgba(200,163,77,.06) inset}
+
+/* cursor spotlight */
+.fqi::before{content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(360px circle at var(--mx) var(--my),
+    rgba(200,163,77,.18),transparent 62%);
+  opacity:0;transition:opacity .45s var(--ease-out);pointer-events:none}
+.fqi.is-host::before{opacity:1}
+
+/* gold hairline along the bottom edge, fills when the card opens */
+.fqi::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:100%;
+  background:linear-gradient(90deg,var(--gold),rgba(200,163,77,0));
+  transform:scaleX(0);transform-origin:left;z-index:2;
+  transition:transform .7s var(--ease-out)}
+.fqi.is-open::after{transform:scaleX(1)}
+
+/* the oversized numeral — always visible, gold while the card is open */
+.fqi__no{position:relative;z-index:1;
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(2.5rem,4.6vw,4.15rem);line-height:.86;letter-spacing:-.055em;
+  color:rgba(255,255,255,.30);font-variant-numeric:tabular-nums;
+  transition:color .55s var(--ease-out)}
+.fqi.is-open .fqi__no{color:var(--gold)}
+
+.fqi__main{position:relative;z-index:1;min-width:0;padding-top:.28em}
+
+.fqi__btn{width:100%;display:flex;align-items:flex-start;justify-content:space-between;
+  gap:clamp(12px,1.6vw,20px);
+  padding:0;background:none;border:0;color:inherit;text-align:left;cursor:pointer;
+  font-family:inherit}
+.fqi__q{flex:1;min-width:0;font-family:var(--display);font-weight:400;
+  font-size:clamp(1.02rem,1.42vw,1.34rem);line-height:1.28;letter-spacing:-.02em;
+  color:#fff;transition:color .5s var(--ease-out)}
+.fqi.is-open .fqi__q,.fqi__btn:hover .fqi__q{color:var(--gold)}
+
+/* plus / close glyph */
+.fqi__x{position:relative;flex:none;width:14px;height:14px;margin-top:.32em}
+.fqi__x::before,.fqi__x::after{content:"";position:absolute;left:0;top:50%;
+  width:100%;height:1.4px;border-radius:2px;background:rgba(255,255,255,.6);
+  transition:transform .45s var(--ease-out),background .4s var(--ease-out)}
+.fqi__x::after{transform:rotate(90deg)}
+.fqi.is-open .fqi__x::before{transform:rotate(45deg);background:var(--gold)}
+.fqi.is-open .fqi__x::after{transform:rotate(-45deg);background:var(--gold)}
+
+/* answer — grid-rows trick, so it opens and closes without a fixed height */
+.fqi__panel{display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .6s var(--ease-io)}
+.fqi.is-open .fqi__panel{grid-template-rows:1fr}
+.fqi__inner{overflow:hidden}
+.fqi__a{margin:0;padding-top:clamp(9px,.9vw,13px);max-width:58ch;
+  font-size:clamp(.84rem,.95vw,.92rem);line-height:1.7;
+  color:rgba(255,255,255,.70);
+  opacity:0;transform:translateY(-6px);
+  transition:opacity .45s var(--ease-out) .06s,transform .45s var(--ease-out) .06s}
+.fqi.is-open .fqi__a{opacity:1;transform:none}
+
+/* ---------------- responsive ---------------- */
+@media(max-width:1024px){
+  .fq{padding-block:40px}
+  .fq__wrap{grid-template-columns:1fr;gap:clamp(22px,3.2vw,32px)}
+  /* the panel stops pinning on tablet — the stack needs the screen */
+  .fq__left{position:static}
+  .fq h2{max-width:18ch}
+  .fq__lede{max-width:46ch}
+  .fq__bg::after{background:
+    linear-gradient(180deg,rgba(8,22,42,.92) 0%,rgba(8,22,42,.84) 44%,
+      rgba(8,22,42,.90) 100%)}
+  .fq__cta{margin-top:20px}
+  .fqi__no{font-size:clamp(2rem,6vw,2.55rem)}
+}
+@media(max-width:560px){
+  .fq{padding-block:30px}
+  .fq h2{font-size:clamp(1.7rem,8vw,2.3rem);max-width:none}
+  .fq__list{gap:9px}
+  .fqi{border-radius:15px;background:rgba(10,25,48,.64);
+    gap:12px;padding:15px 15px 16px}
+  .fqi__no{font-size:1.9rem;line-height:.92}
+  .fqi__q{font-size:.95rem}
+  .fqi__a{font-size:.82rem;padding-top:8px}
+  .fq__cta{width:100%;justify-content:center}
+}
+
+/* ---------------- reveals ---------------- */
+.fq .ln{display:block;overflow:hidden;padding-bottom:.07em}
+.fq .ln > span{display:block;transform:translateY(112%);
+  transition:transform 1.15s var(--ease-out)}
+.fq .ln.is-in > span{transform:none}
+.fq .rv{opacity:0;transform:translateY(22px);
+  transition:opacity .85s var(--ease-out),transform .85s var(--ease-out)}
+.fq .rv.is-in{opacity:1;transform:none}
+.fq .rv.is-in.fq__cta{transition:background .42s var(--ease-out),
+  color .42s var(--ease-out),border-color .42s var(--ease-out),
+  transform .5s var(--ease-out),box-shadow .42s var(--ease-out)}
+.fq .rv.is-in.fq__cta:hover{transform:translateY(-3px)}
+.fq .fqi{opacity:0;transform:translateY(24px);
+  transition:opacity .8s var(--ease-out),transform .8s var(--ease-out),
+             border-color .55s var(--ease-out),background .55s var(--ease-out),
+             box-shadow .55s var(--ease-out)}
+.fq .fqi.is-in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  .fq .ln > span{transform:none!important;transition:none!important}
+  .fq .rv,.fq .fqi{opacity:1!important;transform:none!important}
+  .fq .fqi{transition:none!important}
+  .fqi::before,.fqi::after{display:none!important}
+  .fqi__panel{transition:none!important}
+  .fqi__a{opacity:1!important;transform:none!important;transition:none!important}
+  .fqi__x::before,.fqi__x::after{transition:none!important}
+}
+
+
+/* Mobile FAQ: make the Ask Me Directly button more compact. */
+@media (max-width: 767px) {
+  .fq__cta {
+    width: 100%;
+    max-width: 280px;
+    min-height: 44px;
+    justify-content: center;
+    justify-self: start;
+    padding-inline: 20px;
+  }
+}
+
+
+/* Mobile CTA: enforce compact button width instead of stretching full row. */
+@media (max-width: 767px) {
+  .fq__cta {
+    display: inline-flex !important;
+    width: 280px !important;
+    max-width: 100% !important;
+    min-height: 44px !important;
+    justify-self: start !important;
+    align-self: flex-start !important;
+    flex: 0 0 auto !important;
+    box-sizing: border-box !important;
+  }
+}
+
+
+/* Keep the after-list CTA hidden on desktop; reveal it only on mobile. */
+.fq__cta--after-list {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .fq__left > .fq__cta--desktop {
+    display: none !important;
+  }
+
+  .fq__cta--after-list {
+    display: inline-flex !important;
+    grid-column: 1 / -1;
+    justify-self: start;
+    align-self: start;
+    width: 280px !important;
+    max-width: 100%;
+    margin-top: 22px;
+  }
+}
+
+
+/* Desktop: hide only the duplicate CTA placed below the FAQ list. */
+@media (min-width: 768px) {
+  .fq .fq__cta.fq__cta--after-list {
+    display: none !important;
+  }
+}
+
+/* Mobile homepage section spacing */
+@media (max-width: 767px) { .fq { padding-top: 36px !important; padding-bottom: 36px !important; } }

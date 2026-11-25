@@ -1,0 +1,294 @@
+
+/* ---------- article page ---------- */
+body{background:var(--cream)}
+.po-hero{position:relative;isolation:isolate;overflow:clip;background:var(--navy);
+  color:#fff;display:flex;align-items:flex-end;
+  padding-block:calc(var(--barh,91px) + clamp(76px,10vw,126px)) clamp(52px,6vw,86px)}
+.po-hero__bg{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.po-hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center 46%;
+  transform:scale(1.05)}
+.po-hero__bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(7,20,38,.72) 0%,rgba(7,20,38,.62) 34%,rgba(7,20,38,.9) 100%)}
+.po-hero__wrap{max-width:min(880px,100%);margin-inline:auto;padding-inline:var(--gutter)}
+.po-crumb{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:.76rem;
+  letter-spacing:.05em;color:rgba(255,255,255,.62);flex-wrap:wrap}
+.po-crumb a{color:rgba(255,255,255,.78);text-decoration:none;transition:color .3s var(--ease-out)}
+.po-crumb a:hover{color:var(--gold-lt)}
+.po-crumb i{width:3px;height:3px;border-radius:50%;background:var(--gold);flex:none}
+.po-meta{display:flex;align-items:center;gap:12px;font-size:.74rem;letter-spacing:.07em;
+  text-transform:uppercase;color:rgba(255,255,255,.66);margin:0 0 14px;flex-wrap:wrap}
+.po-meta span.po-cat{color:var(--gold-lt);font-weight:600}
+.po-meta i{width:3px;height:3px;border-radius:50%;background:currentColor;flex:none}
+.po-hero h1{font-family:var(--display);font-weight:400;margin:0;
+  font-size:clamp(1.85rem,4.3vw,3.4rem);line-height:1.06;letter-spacing:-.03em;max-width:22ch}
+.po-body{padding-block:clamp(34px,5.4vw,72px) clamp(44px,6vw,84px)}
+.po-body__wrap{max-width:min(760px,100%);margin-inline:auto;padding-inline:var(--gutter)}
+.po-lede,
+.po-body__wrap > p:first-of-type{font-family:var(--display);font-size:clamp(1.04rem,1.7vw,1.35rem);line-height:1.6;
+  letter-spacing:-.012em;color:#2C3B50;margin:0 0 clamp(22px,3vw,34px)}
+.po-body h2{font-family:var(--display);font-weight:400;font-size:clamp(1.28rem,2.2vw,1.72rem);
+  line-height:1.2;letter-spacing:-.022em;color:var(--ink);
+  margin:clamp(30px,4vw,46px) 0 14px}
+.po-body p{font-size:clamp(.96rem,1.06vw,1.04rem);line-height:1.8;color:var(--ink-body);
+  margin:0 0 18px}
+.po-body strong{color:var(--ink);font-weight:600}
+.po-list,
+.po-body__wrap ul:not(.po-pages){margin:0 0 20px;padding:0;list-style:none;display:grid;gap:12px}
+.po-list li,
+.po-body__wrap ul:not(.po-pages) li{position:relative;padding-left:22px;font-size:clamp(.94rem,1.04vw,1rem);
+  line-height:1.72;color:var(--ink-body)}
+.po-list li::before,
+.po-body__wrap ul:not(.po-pages) li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;
+  background:var(--gold);transform:rotate(45deg)}
+.po-quote,
+.po-body__wrap blockquote{margin:clamp(26px,3.4vw,38px) 0;padding:22px 26px;
+  border-left:2px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0;
+  background:var(--cream-2);font-family:var(--display);font-size:clamp(1.04rem,1.6vw,1.22rem);
+  line-height:1.5;letter-spacing:-.012em;color:var(--ink)}
+.po-body__wrap blockquote p{margin:0;font-family:inherit;font-size:inherit;line-height:inherit;color:inherit}
+.po-foot{margin-top:clamp(34px,4.4vw,54px);padding-top:clamp(24px,3vw,34px);
+  border-top:1px solid var(--line);display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  justify-content:space-between}
+.po-foot__who{display:flex;align-items:center;gap:12px}
+.po-foot__who img{width:46px;height:46px;border-radius:50%;object-fit:cover;
+  object-position:center 20%;border:1px solid var(--line)}
+.po-foot__who b{display:block;font-family:var(--display);font-weight:400;font-size:.96rem;
+  color:var(--ink);letter-spacing:-.014em}
+.po-foot__who small{display:block;font-size:.74rem;color:var(--ink-mute);margin-top:2px}
+.po-disc{margin:22px 0 0;font-size:.76rem;line-height:1.66;color:var(--ink-mute)}
+
+/* ---------- read next ---------- */
+.po-next{background:var(--paper);border-top:1px solid var(--line)}
+.po-next__head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;
+  flex-wrap:wrap;margin-bottom:clamp(20px,2.6vw,32px)}
+.po-next h2{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2.4vw,1.9rem);
+  letter-spacing:-.024em;color:var(--ink);margin:0}
+.po-next a.pill{flex:none}
+.po-next__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,2vw,24px)}
+.po-card{display:flex;flex-direction:column;overflow:hidden;text-decoration:none;
+  color:inherit;border-radius:var(--r-lg);background:var(--cream);
+  border:1px solid var(--line);
+  transition:transform .5s var(--ease-out),border-color .45s var(--ease-out),
+    box-shadow .5s var(--ease-out)}
+.po-card:hover{transform:translateY(-5px);border-color:rgba(200,163,77,.5);
+  box-shadow:0 30px 55px -40px rgba(11,31,58,.5)}
+.po-card__img{overflow:hidden;aspect-ratio:16/10}
+.po-card__img img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .9s var(--ease-out)}
+.po-card:hover .po-card__img img{transform:scale(1.06)}
+.po-card__body{padding:16px 18px 20px}
+.po-card__body h3{margin:0 0 6px;font-family:var(--display);font-weight:400;
+  font-size:1rem;line-height:1.26;letter-spacing:-.018em;color:var(--ink)}
+.po-card__body p{margin:0;font-size:.78rem;letter-spacing:.05em;color:var(--ink-mute)}
+@media(max-width:900px){.po-next__grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.po-next__grid{grid-template-columns:1fr}
+  .po-foot{flex-direction:column;align-items:flex-start}}
+
+/* ---------- additions for the WordPress single post ---------- */
+.po-hero h1{max-width:26ch}
+.po-crumb a{color:inherit}
+/* thumbnail markup emitted by the editor/theme should not break the hero */
+.po-hero__bg picture,.po-hero__bg img{max-width:100%}
+.po-pages{display:flex;gap:10px;margin:26px 0}
+
+
+/* 13 reasons investment editorial card grid */
+.po-body__wrap:has(.invest-13-article) {
+  width: 100%;
+  max-width: 1280px;
+}
+.invest-13-article {
+  width: 100%;
+}
+.invest-13-lede {
+  max-width: 900px;
+  margin: 0 auto 42px !important;
+  text-align: center;
+  font-family: var(--display);
+  font-size: clamp(1.08rem, 1.65vw, 1.35rem) !important;
+  line-height: 1.65 !important;
+  color: var(--ink) !important;
+}
+.invest-13-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 26px);
+}
+.invest-13-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  transition: transform .4s var(--ease-out), border-color .4s var(--ease-out), box-shadow .4s var(--ease-out);
+}
+.invest-13-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200,163,77,.55);
+  box-shadow: 0 22px 42px -34px rgba(11,31,58,.42);
+}
+.invest-13-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--cream-2);
+}
+.invest-13-card__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s var(--ease-out);
+}
+.invest-13-card:hover .invest-13-card__image img {
+  transform: scale(1.035);
+}
+.invest-13-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(18px, 2vw, 24px);
+}
+.invest-13-card__number {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--gold);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+.invest-13-card__body h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.2rem, 1.5vw, 1.48rem);
+  line-height: 1.2;
+}
+.invest-13-card__body p {
+  flex: 1;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.invest-13-card__rule {
+  width: 100%;
+  height: 1px;
+  margin: 20px 0 14px;
+  background: var(--line);
+}
+.invest-13-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: .88rem;
+  font-weight: 600;
+  transition: color .25s var(--ease-out);
+}
+.invest-13-card__link span {
+  color: var(--gold);
+  transition: transform .25s var(--ease-out);
+}
+.invest-13-card__link:hover {
+  color: var(--gold-ink);
+}
+.invest-13-card__link:hover span {
+  transform: translate(3px,-3px);
+}
+@media(max-width:980px) {
+  .invest-13-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:640px) {
+  .po-body__wrap:has(.invest-13-article) { padding-inline: 16px; }
+  .invest-13-grid { grid-template-columns: 1fr; gap: 16px; }
+  .invest-13-lede { text-align: left; margin-bottom: 26px !important; }
+}
+
+
+/* Refined spacing and typography for the 13-reasons editorial cards */
+.invest-13-card__body {
+  justify-content: flex-start !important;
+  gap: 0 !important;
+}
+.invest-13-card__number {
+  margin: 0 0 16px !important;
+  line-height: 1.2;
+}
+.invest-13-card__body h2 {
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+}
+.invest-13-card__body p {
+  flex: 0 0 auto !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  margin: 0 !important;
+}
+.invest-13-card__rule {
+  margin-top: auto !important;
+  margin-bottom: 14px !important;
+}
+.invest-13-card__image {
+  aspect-ratio: 16 / 9;
+}
+.invest-13-card__image img {
+  object-position: center;
+}
+
+
+/* Clean image edge and make the card CTA read as a complete link */
+.invest-13-card__image {
+  position: relative !important;
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  aspect-ratio: 16 / 9 !important;
+  line-height: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+.invest-13-card__image img {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  object-fit: cover !important;
+}
+.invest-13-card__link {
+  align-self: flex-start !important;
+  width: auto !important;
+  min-width: 0 !important;
+  display: inline-flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: var(--ink) !important;
+  background: transparent !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+  text-decoration: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.invest-13-card__link span {
+  display: inline-block !important;
+  color: var(--gold) !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+}

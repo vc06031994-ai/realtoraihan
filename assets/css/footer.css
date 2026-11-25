@@ -1,0 +1,262 @@
+/* shared footer */
+
+/* ==================== SECTION 12 · FOOTER ====================
+   Reference: a full-bleed Dubai dusk photograph with a large dark glass panel
+   floating over it. Inside the panel:
+     left  — logo lockup, "Follow Us" label, circular social buttons, copyright
+     right — four link columns, each with a small gold square bullet + hairline
+   A circular back-to-top FAB is pinned to the bottom-right of the viewport.
+   ========================================================= */
+
+.ft{
+  position:relative;isolation:isolate;overflow:clip;
+  /* fixed rhythm so the footer measures the same on every page, whatever the
+     page above it ends with */
+  padding-block:clamp(72px,7.6vw,104px) clamp(56px,5vw,72px);
+  background:#0A1930;
+}
+.ft__wrap{display:block}
+/* the disclosure + keyword strips live outside the glass panel, on the photo:
+   one shared block, identical on every page */
+.ft__foot{max-width:1560px;margin-inline:auto;
+  padding-inline:clamp(16px,2.4vw,34px)}
+
+/* ---------------- background photograph ---------------- */
+.ft__bg{position:absolute;inset:0;z-index:-2}
+.ft__bg img{min-height:100%}
+.ft__bg img{width:100%;height:100%;object-fit:cover;object-position:center 62%;
+  display:block;transform:scale(1.02);will-change:transform}
+/* keep the photo readable behind the panel but still clearly a photograph */
+.ft__bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(7,20,38,.64) 0%,rgba(7,20,38,.48) 28%,
+    rgba(7,20,38,.64) 65%,rgba(7,20,38,.88) 100%)}
+
+/* the panel runs wider than the section max-width, like the reference */
+.ft__wrap{max-width:1560px;margin-inline:auto;
+  padding-inline:clamp(16px,2.4vw,34px);
+  position:relative;z-index:1}
+
+/* ---------------- the floating panel ---------------- */
+.ft__panel{
+  display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,2.14fr);
+  gap:clamp(28px,4.4vw,72px);
+  padding:clamp(26px,4vw,54px);
+  border-radius:clamp(18px,2.2vw,28px);
+  border:1px solid rgba(255,255,255,.10);
+  /* bright glass, not a slab: the lit city stays visible through the sheet and
+     the gold hairlines read as jewellery on top of it */
+  background:linear-gradient(155deg,rgba(24,52,96,.58),rgba(9,26,52,.72));
+  -webkit-backdrop-filter:blur(24px) saturate(140%) brightness(1.06);
+  backdrop-filter:blur(24px) saturate(140%) brightness(1.06);
+  border:1px solid rgba(214,228,255,.20);
+  box-shadow:0 34px 80px -44px rgba(0,0,0,.72),
+             inset 0 1px 0 rgba(255,255,255,.22),
+             inset 0 0 70px -18px rgba(120,170,255,.16)}
+
+/* ---------------- left: brand column ---------------- */
+.ft__brand{display:inline-flex;align-items:center;gap:13px;text-decoration:none;color:#fff;
+  transition:transform .4s var(--ease-out)}
+.ft__brand:hover{transform:translateY(-2px)}
+.ft__brandMark{display:block;width:auto;height:clamp(36px,4.2vw,44px);object-fit:contain;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.55));transition:transform .4s var(--ease-out)}
+.ft__brand:hover .ft__brandMark{transform:scale(1.04)}
+.ft__brandSep{display:inline-block;width:1px;height:28px;background:rgba(255,255,255,.32);flex-shrink:0}
+.ft__brandName{font-family:var(--display);font-size:clamp(1.3rem,1.75vw,1.58rem);font-weight:400;
+  line-height:1;letter-spacing:-.015em;color:var(--gold);white-space:nowrap;display:inline-block}
+.ft__logo{display:block;width:auto;height:clamp(34px,4.4vw,48px);
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.55));
+  transition:transform .5s var(--ease-out)}
+
+.ft__follow{margin:clamp(20px,2.6vw,30px) 0 0;
+  font-size:.72rem;font-weight:600;letter-spacing:.06em;
+  color:rgba(255,255,255,.86)}
+.ft__socials{display:flex;align-items:center;gap:9px;margin-top:11px}
+.ft__soc{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.86);text-decoration:none;
+  transition:background .4s var(--ease-out),border-color .4s var(--ease-out),
+             color .4s var(--ease-out),transform .4s var(--ease-out)}
+.ft__soc svg{width:14px;height:14px}
+.ft__soc{position:relative;overflow:visible;isolation:isolate}
+.ft__soc::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;border:1.5px solid currentColor;opacity:0;transform:scale(.90);transition:opacity .45s var(--ease-out),transform .55s var(--ease-out)}
+.ft__soc:hover{background:var(--gold);border-color:var(--gold);color:var(--navy);
+  transform:translateY(-3px) scale(1.08);
+  box-shadow:0 12px 26px -12px rgba(200,163,77,.65)}
+
+.ft__soc:hover::after{opacity:.62;transform:scale(1.075)}
+
+.ft__copy{margin:clamp(20px,2.6vw,30px) 0 0;
+  font-size:.735rem;line-height:1.7;color:rgba(255,255,255,.52)}
+.ft__copy b{font-weight:500;color:rgba(255,255,255,.78)}
+.ft__copy em{font-style:normal;color:var(--gold)}
+
+/* ---------------- right: four link columns ---------------- */
+.ft__cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(20px,2.6vw,40px)}
+
+.ft__h{display:flex;align-items:center;gap:8px;margin:0 0 clamp(12px,1.5vw,16px);
+  padding-bottom:clamp(9px,1.1vw,12px);
+  border-bottom:1px solid rgba(255,255,255,.20);
+  font-size:.665rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  color:#fff}
+/* the small square bullet from the reference, in gold */
+.ft__h::before{content:"";width:5px;height:5px;flex:none;border-radius:1px;
+  background:var(--gold)}
+
+.ft__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+  gap:clamp(7px,.9vw,10px)}
+.ft__list a,.ft__list span{position:relative;display:inline-flex;align-items:center;
+  gap:7px;font-size:.845rem;line-height:1.5;
+  color:rgba(255,255,255,.70);text-decoration:none;
+  transition:color .35s var(--ease-out)}
+.ft__list a::before{content:"";width:0;height:1px;background:var(--gold);
+  flex:none;transition:width .35s var(--ease-out)}
+.ft__list a:hover{color:#fff}
+.ft__list a:hover::before{width:11px}
+.ft__list span{color:rgba(255,255,255,.58)}
+
+/* contact column — label above value */
+.ft__row{display:flex;flex-direction:column;gap:1px}
+.ft__rowK{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.36)}
+.ft__row a,.ft__row p{margin:0;font-size:.845rem;line-height:1.45;color:#fff;
+  text-decoration:none;transition:color .35s var(--ease-out)}
+.ft__row a:hover{color:var(--gold)}
+/* ---------------- disclaimer strip ---------------- */
+.ft__disc{margin:clamp(18px,2.4vw,26px) 0 0;
+  padding:0 clamp(4px,.6vw,10px);
+  font-size:.715rem;line-height:1.7;color:rgba(255,255,255,.62);
+  text-shadow:0 1px 7px rgba(4,14,32,.75)}
+
+/* ---------------- service-location keyword strip ---------------- */
+.ft__keys{margin:clamp(14px,2vw,22px) 0 0;padding:clamp(14px,1.8vw,20px) clamp(4px,.6vw,10px) 0;
+  border-top:1px solid rgba(255,255,255,.10)}
+.ft__keysTitle{margin:0 0 8px;font-size:.6rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(255,255,255,.42)}
+.ft__keysTx{margin:0;font-size:.66rem;line-height:1.85;letter-spacing:.005em;
+  color:rgba(255,255,255,.34);word-spacing:.5px;
+  text-shadow:0 1px 6px rgba(4,14,32,.7)}
+.ft__keysTx::selection{background:var(--gold);color:var(--navy)}
+/* the keyword block sits on the photo, so it gets its own scrim to stay legible */
+.ft .ft__keys{padding-inline:clamp(10px,1.4vw,16px);
+  border-radius:14px;background:rgba(6,17,34,.46) !important;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ft .ft__keysTitle{color:rgba(255,255,255,.62)}
+.ft .ft__keysTx{color:rgba(255,255,255,.52);font-size:.66rem;line-height:1.85}
+
+/* ---------------- circular back-to-top FAB ---------------- */
+.ft__fab{position:fixed;right:clamp(16px,2.4vw,30px);bottom:clamp(16px,2.4vw,30px);
+  z-index:60;
+  width:clamp(44px,3.6vw,52px);height:clamp(44px,3.6vw,52px);border-radius:50%;
+  display:grid;place-items:center;text-decoration:none;
+  background:var(--gold);color:var(--navy);
+  box-shadow:0 12px 28px -12px rgba(0,0,0,.85),0 0 0 0 rgba(200,163,77,.5);
+  opacity:0;transform:translateY(14px) scale(.9);pointer-events:none;
+  transition:opacity .45s var(--ease-out),transform .45s var(--ease-out),
+             background .35s var(--ease-out),box-shadow .35s var(--ease-out)}
+.ft__fab svg{width:15px;height:15px;
+  transition:transform .4s var(--ease-out)}
+/* the FAB lives outside <footer>, so the state class goes on the FAB itself */
+.ft__fab.is-shown{opacity:1;transform:none;pointer-events:auto}
+.ft__fab{overflow:visible;isolation:isolate}
+.ft__fab::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;border:1.5px solid currentColor;opacity:0;transform:scale(.90);transition:opacity .45s var(--ease-out),transform .55s var(--ease-out)}
+.ft__fab:hover{background:var(--gold-lt);transform:scale(1.08);
+  box-shadow:0 16px 32px -12px rgba(0,0,0,.9),
+    0 0 0 7px rgba(200,163,77,.22)}
+.ft__fab:hover::after{opacity:.62;transform:scale(1.075)}
+.ft__fab:hover svg{transform:translateY(-3px)}
+
+/* ---------------- responsive ---------------- */
+@media(max-width:1024px){
+  .ft{padding-block:40px}
+  .ft__panel{grid-template-columns:1fr;
+    gap:clamp(24px,3.4vw,34px)}
+  .ft__cols{grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(22px,3vw,32px)}
+  .ft__follow{margin-top:22px}
+  .ft__copy{margin-top:18px}
+}
+@media(max-width:560px){
+  .ft{padding-block:30px}
+  .ft__panel{padding:22px 20px 24px;border-radius:18px}
+  .ft__logo{height:32px}
+  .ft__cols{grid-template-columns:1fr;gap:22px}
+  .ft__h{margin-bottom:10px;padding-bottom:8px}
+  .ft__list a,.ft__list span{font-size:.82rem}
+  .ft__disc{font-size:.7rem;margin-top:16px}
+  .ft__keysTx{font-size:.62rem;line-height:1.8}
+  .ft__fab{right:14px;bottom:14px;width:46px;height:46px}
+}
+
+/* ---------------- reveals ---------------- */
+.ft .rv{opacity:0;transform:translateY(20px);
+  transition:opacity .85s var(--ease-out),transform .85s var(--ease-out)}
+.ft .rv.is-in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  .ft .rv{opacity:1!important;transform:none!important;transition:none!important}
+  .ft__soc,.ft__fab,.ft__logo,.ft__list a::before{transition:none!important}
+  .ft__fab{transition:opacity .2s linear!important}
+}
+
+
+/* Bottom legal row: copyright left, studio credit right */
+.ft__legal-row{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:clamp(18px,2.2vw,28px);padding:clamp(14px,1.6vw,20px) clamp(10px,1.4vw,16px) 0;border-top:1px solid rgba(255,255,255,.10)}
+.ft__legal-row .ft__copy{margin:0}
+.ft__credit{margin:0;text-align:right;font-size:.735rem;line-height:1.7;color:rgba(255,255,255,.52)}
+.ft__credit a{color:var(--gold);text-decoration:none;transition:color .2s ease}
+.ft__credit a:hover{color:#fff}
+@media(max-width:640px){.ft__legal-row{flex-direction:column;align-items:flex-start;gap:8px}.ft__credit{text-align:left}}
+
+
+/* Legal row alignment refinement */
+.ft__legal-row{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;flex-wrap:nowrap!important}
+.ft__legal-row .ft__copy{flex:1 1 auto;white-space:nowrap}
+.ft__legal-row .ft__credit{flex:0 0 auto;white-space:nowrap}
+@media(max-width:640px){.ft__legal-row{flex-direction:column!important;align-items:flex-start!important;flex-wrap:wrap!important}.ft__legal-row .ft__copy,.ft__legal-row .ft__credit{white-space:normal}}
+
+
+/* GTranslate: shortcode is rendered from the global footer and pinned to viewport left */
+body .ft__language-switcher{position:fixed!important;left:15px!important;right:auto!important;top:auto!important;bottom:15px!important;margin:0!important;padding:0!important;z-index:99999!important;width:max-content!important;max-width:calc(100vw - 30px)!important;display:block!important;transform:none!important}
+body .ft__language-switcher .gtranslate_wrapper{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;display:block!important;margin:0!important;z-index:99999!important}
+body .ft__language-switcher .gt_float_switcher{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important}
+@media(max-width:767px){body .ft__language-switcher{left:10px!important;bottom:10px!important;max-width:calc(100vw - 20px)!important}}
+
+
+/* Footer service-location description readability */
+.ft .ft__keysTx {
+  font-size: clamp(16px, 1.1vw, 18px) !important;
+  line-height: 1.6 !important;
+}
+@media (max-width: 767px) {
+  .ft .ft__keysTx {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+  }
+}
+
+
+/* Keep footer service-location keywords in markup but hide this block visually */
+.ft__keys {
+  display: none !important;
+}
+
+
+/* Google Reviews link card */
+.ft__google-review{display:flex;flex-direction:column;gap:9px;width:min(100%,290px);margin-top:22px;padding:15px 16px;border:1px solid rgba(255,255,255,.24);border-radius:8px;background:rgba(255,255,255,.08);color:#fff;text-decoration:none;transition:background .25s ease,border-color .25s ease,transform .25s ease}
+.ft__google-review:hover{background:rgba(255,255,255,.14);border-color:var(--gold);transform:translateY(-2px)}
+.ft__google-reviewTop{display:flex;align-items:center;gap:9px;font-size:.9rem;font-weight:600;color:#fff}
+.ft__google-mark{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#fff;color:#4285F4;font-size:1rem;font-weight:700;font-family:Arial,sans-serif}
+.ft__google-reviewBottom{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.78rem;line-height:1.5;color:rgba(255,255,255,.72)}
+.ft__google-reviewBottom span{color:var(--gold);font-size:1rem}
+
+/* Footer highlighted link and contact details readability */
+.ft__list a,.ft__list span,.ft__row a,.ft__row p{font-size:16px!important;line-height:1.6!important}
+@media(max-width:560px){.ft__list a,.ft__list span,.ft__row a,.ft__row p{font-size:16px!important}}
+
+/* Footer column headings: slightly smaller, balanced size */
+.ft .ft__h{font-size:14px!important;letter-spacing:.12em!important;line-height:1.35!important}
+@media(max-width:560px){.ft .ft__h{font-size:13px!important}}
+
+/* Mobile footer disclaimer and legal text: reduce oversized copy */
+@media(max-width:640px){.ft .ft__disc{font-size:13px!important;line-height:1.55!important}.ft .ft__legal-row .ft__copy,.ft .ft__legal-row .ft__credit{font-size:12px!important;line-height:1.55!important}}

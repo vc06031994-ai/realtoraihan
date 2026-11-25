@@ -1,0 +1,2445 @@
+/* ============================================================
+   YOUR OWN STYLES - this file loads LAST on every page,
+   so anything you write here overrides the theme.
+
+   The whole design is driven by the variables below.
+   Change a value here and it changes site-wide.
+   Nothing breaks if this file is empty.
+   ============================================================ */
+
+:root {
+  /* ----- brand colours ----- */
+  /* --navy:      #0B1F3A;   main dark colour (header, dark sections) */
+  /* --navy-card: #12294B;   raised cards on navy                      */
+  /* --gold:      #C8A34D;   accent colour (buttons, small labels)    */
+  /* --gold-lt:   #DDBB72;   accent on hover                          */
+  /* --cream:     #F6F5F0;   light section background                 */
+  /* --ink:       #0B1F3A;   headings on light background             */
+  /* --ink-body:  #4A5566;   body text on light background            */
+
+  /* ----- fonts ----- */
+  /* --display: "Vend Sans", Helvetica, Arial, sans-serif;   headings */
+  /* --body:    "Zalando Sans", Helvetica, Arial, sans-serif;  text  */
+
+  /* ----- corners ----- */
+  /* --r-lg: 22px;   card / image corner radius */
+}
+
+/* 8th Service Card Wide Layout (Second Screenshot design) */
+.sv__bento>.bento--wide,
+.sv__bento>.bento:last-child,
+.sv__bento>.bento:nth-child(8) {
+  grid-column: span 2 !important;
+}
+
+.sv__bento>.bento--wide .bento__body,
+.sv__bento>.bento:last-child .bento__body,
+.sv__bento>.bento:nth-child(8) .bento__body {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  column-gap: clamp(12px, 1.2vw, 16px) !important;
+  align-items: start !important;
+}
+
+/* Ensure all cards have uniform top spacing */
+.sv__bento>.bento:not(.bento--feat) .bento__body {
+  margin-top: 0 !important;
+}
+
+.sv__bento>.bento--feat .bento__body {
+  margin-top: auto !important;
+}
+
+.sv__bento>.bento--wide .bento__ico,
+.sv__bento>.bento:last-child .bento__ico,
+.sv__bento>.bento:nth-child(8) .bento__ico {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+}
+
+.sv__bento>.bento--wide .bento__body>h3,
+.sv__bento>.bento:last-child .bento__body>h3,
+.sv__bento>.bento:nth-child(8) .bento__body>h3 {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  margin: 0 !important;
+}
+
+.sv__bento>.bento--wide .bento__body>p,
+.sv__bento>.bento:last-child .bento__body>p,
+.sv__bento>.bento:nth-child(8) .bento__body>p {
+  grid-column: 1 / -1 !important;
+  grid-row: 2 !important;
+  margin-top: clamp(10px, 1.1vw, 14px) !important;
+  max-width: 58ch !important;
+}
+
+@media (max-width: 1024px) {
+
+  .sv__bento>.bento--wide,
+  .sv__bento>.bento:last-child,
+  .sv__bento>.bento:nth-child(8) {
+    grid-column: span 2 !important;
+  }
+}
+
+@media (max-width: 560px) {
+
+  .sv__bento>.bento--wide,
+  .sv__bento>.bento:last-child,
+  .sv__bento>.bento:nth-child(8) {
+    grid-column: span 1 !important;
+  }
+}
+
+/* Footer Brand Logo Lockup ([Emblem] | Realtor Raihan) */
+.ft__brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 13px !important;
+  text-decoration: none !important;
+  color: #fff !important;
+  transition: transform .4s var(--ease-out) !important;
+}
+
+.ft__brand:hover {
+  transform: translateY(-2px) !important;
+}
+
+.ft__brandMark {
+  display: block !important;
+  width: auto !important;
+  height: clamp(36px, 4.2vw, 44px) !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .55)) !important;
+  transition: transform .4s var(--ease-out) !important;
+}
+
+.ft__brandSep {
+  display: inline-block !important;
+  width: 1px !important;
+  height: 28px !important;
+  background: rgba(255, 255, 255, .32) !important;
+  flex-shrink: 0 !important;
+}
+
+.ft__brandName {
+  font-family: var(--display) !important;
+  font-size: clamp(1.3rem, 1.75vw, 1.58rem) !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  letter-spacing: -.015em !important;
+  color: var(--gold) !important;
+  white-space: nowrap !important;
+  display: inline-block !important;
+}
+
+/* ============================================================
+   BUTTON STYLES (CLEAN HOVER, NORMAL SHADOW, NO SHINE/OUTER RING)
+   ============================================================ */
+.pill,
+.ct__submit,
+.wc__cta,
+.fq__cta {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  font-family: var(--body) !important;
+  font-size: .875rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  padding: 16px 28px !important;
+  border-radius: var(--r-chip) !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  isolation: isolate !important;
+  overflow: visible !important;
+  transition: transform .28s var(--ease-out), box-shadow .28s var(--ease-out), border-color .28s var(--ease-out) !important;
+}
+
+/* Remove floating outer ring border completely */
+.pill::after,
+.ct__submit::after,
+.wc__cta::after,
+.fq__cta::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Arrow smooth transition */
+.pill svg,
+.ct__submit svg,
+.wc__cta svg,
+.fq__cta svg {
+  flex: none !important;
+  transition: transform .28s var(--ease-out) !important;
+}
+
+.pill:hover svg,
+.pill:focus-visible svg,
+.ct__submit:hover svg,
+.ct__submit:focus-visible svg,
+.wc__cta:hover svg,
+.wc__cta:focus-visible svg,
+.fq__cta:hover svg,
+.fq__cta:focus-visible svg {
+  transform: translate(3px, -3px) scale(1.06) !important;
+}
+
+.pill:active,
+.ct__submit:active,
+.wc__cta:active,
+.fq__cta:active {
+  transform: translateY(0) scale(.98) !important;
+}
+
+/* 1. Gold Button (Header CTA, About CTA, Contact Submit, Why Choose CTA, FAQ CTA) */
+.pill--gold,
+.ct__submit,
+.wc__cta,
+.fq__cta {
+  background: var(--gold) !important;
+  color: var(--gold-ink) !important;
+  border: 1.5px solid var(--gold) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.18) !important;
+}
+
+.pill--gold:hover,
+.pill--gold:focus-visible,
+.ct__submit:hover,
+.ct__submit:focus-visible,
+.wc__cta:hover,
+.wc__cta:focus-visible,
+.fq__cta:hover,
+.fq__cta:focus-visible {
+  background: var(--gold) !important;
+  color: var(--gold-ink) !important;
+  border: 1.5px solid var(--gold) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.28) !important;
+}
+
+.pill--gold:hover svg,
+.pill--gold:focus-visible svg,
+.ct__submit:hover svg,
+.ct__submit:focus-visible svg,
+.wc__cta:hover svg,
+.wc__cta:focus-visible svg,
+.fq__cta:hover svg,
+.fq__cta:focus-visible svg {
+  color: var(--gold-ink) !important;
+  stroke: var(--gold-ink) !important;
+}
+
+/* 2. Navy Button (Intro CTA, About CTA) */
+.pill--navy {
+  background: var(--navy) !important;
+  color: #fff !important;
+  border: 1.5px solid var(--navy) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.18) !important;
+}
+
+.pill--navy:hover,
+.pill--navy:focus-visible {
+  background: var(--navy) !important;
+  color: #fff !important;
+  border: 1.5px solid var(--navy) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.28) !important;
+}
+
+.pill--navy:hover svg,
+.pill--navy:focus-visible svg {
+  color: #fff !important;
+  stroke: #fff !important;
+}
+
+/* 3. Cream Button (Hero CTA 1) */
+.pill--cream {
+  background: var(--cream) !important;
+  color: var(--ink) !important;
+  border: 1.5px solid var(--cream) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.15) !important;
+}
+
+.pill--cream:hover,
+.pill--cream:focus-visible {
+  background: var(--cream) !important;
+  color: var(--ink) !important;
+  border: 1.5px solid var(--cream) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.22) !important;
+}
+
+.pill--cream:hover svg,
+.pill--cream:focus-visible svg {
+  color: var(--ink) !important;
+  stroke: var(--ink) !important;
+}
+
+/* 4. Gold Line Button (Hero CTA 2) */
+.pill--gold-line {
+  background: transparent !important;
+  color: var(--gold) !important;
+  border: 1.5px solid var(--gold) !important;
+  box-shadow: none !important;
+}
+
+.pill--gold-line:hover,
+.pill--gold-line:focus-visible {
+  background: transparent !important;
+  color: var(--gold) !important;
+  border: 1.5px solid var(--gold) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.25) !important;
+}
+
+.pill--gold-line:hover svg,
+.pill--gold-line:focus-visible svg {
+  color: var(--gold) !important;
+  stroke: var(--gold) !important;
+}
+
+/* 5. Ghost Button (WhatsApp CTA) */
+.pill--ghost {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1.5px solid rgba(255, 255, 255, .32) !important;
+  box-shadow: none !important;
+}
+
+.pill--ghost:hover,
+.pill--ghost:focus-visible {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1.5px solid rgba(255, 255, 255, .65) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.25) !important;
+}
+
+.pill--ghost:hover svg,
+.pill--ghost:focus-visible svg {
+  color: #fff !important;
+  stroke: #fff !important;
+}
+
+/* 6. Outline Button */
+.pill--outline {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1.5px solid var(--line-navy) !important;
+  box-shadow: none !important;
+}
+
+.pill--outline:hover,
+.pill--outline:focus-visible {
+  background: transparent !important;
+  border: 1.5px solid var(--navy) !important;
+  color: var(--navy) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.18) !important;
+}
+
+:root {
+  --barh: 88px;
+}
+
+@media (max-width: 1080px) {
+  :root {
+    --barh: 70px;
+  }
+}
+
+.brand__mark,
+.brand img.brand__mark {
+  aspect-ratio: 34 / 36 !important;
+}
+
+/* ============================================================
+   RESPONSIVE HEADER & MOBILE MENU
+   ============================================================ */
+
+/* Base header layout */
+.hero__bar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 50 !important;
+  width: 100% !important;
+}
+
+.hero__barInner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+/* Tablet & Down (<= 1080px): Hide desktop nav, show burger */
+@media (max-width: 1080px) {
+  .nav {
+    display: none !important;
+  }
+
+  .burger {
+    display: inline-flex !important;
+  }
+
+  .hero__call span,
+  .hero__callTx small {
+    display: none !important;
+  }
+
+  .hero__call {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+}
+
+/* Mobile & Small Tablet (<= 768px): Hide desktop CTA in header bar, optimize layout */
+@media (max-width: 768px) {
+  .hero__bar {
+    padding: 10px clamp(12px, 3.5vw, 20px) !important;
+  }
+
+  .hero__barInner {
+    gap: 8px !important;
+  }
+
+  .hero__actions .pill--gold {
+    display: none !important;
+  }
+
+  .hero__actions {
+    gap: 8px !important;
+  }
+
+  .brand {
+    font-size: 1.05rem !important;
+    gap: 9px !important;
+  }
+
+  .brand img.brand__mark,
+  .brand__mark {
+    height: 32px !important;
+    width: auto !important;
+  }
+
+  .brand__sub {
+    font-size: 0.52rem !important;
+    letter-spacing: 0.12em !important;
+    margin-top: 2px !important;
+  }
+
+  .hero__call i {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .burger {
+    width: 38px !important;
+    height: 38px !important;
+  }
+}
+
+/* Very small phones (<= 380px) */
+@media (max-width: 380px) {
+  .brand {
+    font-size: 0.95rem !important;
+    gap: 7px !important;
+  }
+
+  .brand img.brand__mark,
+  .brand__mark {
+    height: 28px !important;
+  }
+
+  .brand__sub {
+    display: none !important;
+  }
+}
+
+/* Mobile Menu Overlay Styles */
+.mmenu {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  background: rgba(7, 20, 36, 0.98) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  backdrop-filter: blur(25px) !important;
+  padding: clamp(70px, 12vh, 90px) clamp(20px, 6vw, 40px) 36px !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(-8px) !important;
+  transition: opacity .35s var(--ease-out), transform .35s var(--ease-out), visibility .35s !important;
+}
+
+.mmenu.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+.mmenu>a:not(.pill) {
+  font-family: var(--display) !important;
+  font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important;
+  letter-spacing: -.02em !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  opacity: 0 !important;
+  transform: translateY(12px) !important;
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out), color .25s !important;
+}
+
+.mmenu.is-open>a:not(.pill) {
+  opacity: 1 !important;
+  transform: none !important;
+  transition-delay: calc(var(--i, 0) * 50ms + 60ms) !important;
+}
+
+.mmenu>a:not(.pill):hover,
+.mmenu>a:not(.pill)[aria-current] {
+  color: var(--gold) !important;
+}
+
+.mmenu__x {
+  position: absolute !important;
+  top: 18px !important;
+  right: clamp(16px, 4vw, 28px) !important;
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  display: grid !important;
+  place-items: center !important;
+  cursor: pointer !important;
+  transition: background .3s var(--ease-out), transform .3s var(--ease-out) !important;
+}
+
+.mmenu__x:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  transform: rotate(90deg) !important;
+}
+
+.mmenu__ctaWrap {
+  margin-top: 22px !important;
+  width: 100% !important;
+  opacity: 0 !important;
+  transform: translateY(12px) !important;
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out) !important;
+}
+
+.mmenu.is-open .mmenu__ctaWrap {
+  opacity: 1 !important;
+  transform: none !important;
+  transition-delay: 260ms !important;
+}
+
+.mmenu__ctaWrap .pill--gold {
+  display: flex !important;
+  width: 100% !important;
+  justify-content: center !important;
+  padding: 14px 24px !important;
+  font-size: 0.9rem !important;
+}
+
+.mmenu__foot {
+  margin-top: auto !important;
+  padding-top: 24px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  font-size: 0.85rem !important;
+  color: var(--navy-mute) !important;
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out) !important;
+}
+
+.mmenu.is-open .mmenu__foot {
+  opacity: 1 !important;
+  transform: none !important;
+  transition-delay: 320ms !important;
+}
+
+.mmenu__foot a {
+  font-family: var(--body) !important;
+  font-size: 0.88rem !important;
+  color: var(--gold) !important;
+  text-decoration: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  display: inline-block !important;
+}
+
+/* ============================================================
+   TESTIMONIALS SLIDER CONTROLS (MOBILE & TABLET RESPONSIVE FIX)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .ts__stage {
+    position: relative !important;
+    padding-bottom: 74px !important;
+    margin-bottom: 8px !important;
+    min-height: 0 !important;
+  }
+
+  .ts__arrow {
+    position: absolute !important;
+    top: auto !important;
+    bottom: 0 !important;
+    transform: none !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    display: grid !important;
+    place-items: center !important;
+    background: rgba(22, 46, 81, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    transition: background .25s var(--ease-out), border-color .25s var(--ease-out), color .25s var(--ease-out), transform .25s var(--ease-out) !important;
+  }
+
+  .ts__arrow:hover {
+    background: var(--gold) !important;
+    border-color: var(--gold) !important;
+    color: var(--navy) !important;
+    transform: scale(1.08) !important;
+  }
+
+  .ts__arrow--prev {
+    left: calc(50% - 56px) !important;
+    right: auto !important;
+  }
+
+  .ts__arrow--next {
+    left: calc(50% + 8px) !important;
+    right: auto !important;
+  }
+
+  .ts__note {
+    clear: both !important;
+    position: relative !important;
+    z-index: 1 !important;
+    margin-top: 24px !important;
+    padding-inline: 16px !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ts__stage {
+    padding-bottom: 68px !important;
+  }
+
+  .ts__track {
+    height: auto !important;
+    min-height: 280px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .ts__arrow {
+    width: 44px !important;
+    height: 44px !important;
+    bottom: 0 !important;
+  }
+
+  .ts__arrow--prev {
+    left: calc(50% - 52px) !important;
+  }
+
+  .ts__arrow--next {
+    left: calc(50% + 8px) !important;
+  }
+
+  .ts__note {
+    margin-top: 20px !important;
+    font-size: 0.72rem !important;
+    line-height: 1.55 !important;
+  }
+}
+
+/* ============================================================
+   FLOATING SPEED DIAL (WHATSAPP & CALL WIDGET)
+   ============================================================ */
+.rr-speed-dial {
+  position: fixed;
+  right: clamp(18px, 2.2vw, 24px);
+  bottom: clamp(76px, 8.5vw, 88px);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+/* Actions Stack */
+.rr-speed-dial__actions {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 14px;
+  margin-bottom: 14px;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.rr-speed-dial__action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px) scale(0.85);
+  transition: transform .32s cubic-bezier(.16, 1, .3, 1), opacity .25s ease;
+}
+
+/* Open state */
+.rr-speed-dial.is-open .rr-speed-dial__actions {
+  pointer-events: auto;
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__action {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__action--wa {
+  transition-delay: 40ms;
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__action--phone {
+  transition-delay: 90ms;
+}
+
+/* Action Icons */
+.rr-speed-dial__icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+
+.rr-speed-dial__action--wa .rr-speed-dial__icon {
+  background: #25D366;
+  color: #ffffff;
+  box-shadow: 0 6px 18px -2px rgba(37, 211, 102, 0.45);
+}
+
+.rr-speed-dial__action--phone .rr-speed-dial__icon {
+  background: #03E78B;
+  color: #ffffff;
+  box-shadow: 0 6px 18px -2px rgba(3, 231, 139, 0.45);
+}
+
+.rr-speed-dial__action:hover .rr-speed-dial__icon {
+  transform: scale(1.08);
+}
+
+.rr-speed-dial__action--wa:hover .rr-speed-dial__icon {
+  box-shadow: 0 8px 24px -2px rgba(37, 211, 102, 0.65);
+}
+
+.rr-speed-dial__action--phone:hover .rr-speed-dial__icon {
+  box-shadow: 0 8px 24px -2px rgba(3, 231, 139, 0.65);
+}
+
+/* Action Tooltip Labels */
+.rr-speed-dial__label {
+  background: #ffffff;
+  color: #0B1F3A;
+  font-family: var(--body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.95;
+  transition: opacity .2s ease;
+}
+
+.rr-speed-dial__action:hover .rr-speed-dial__label {
+  opacity: 1;
+}
+
+/* Main Trigger Button */
+.rr-speed-dial__btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--navy, #0B1F3A) !important;
+  border: 1.5px solid var(--gold, #C8A34D) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.35) !important;
+  transition: transform .3s cubic-bezier(.16, 1, .3, 1), background-color .3s ease !important;
+  animation: rrFabPulse 2.8s infinite;
+}
+
+.rr-speed-dial__btn:hover {
+  transform: scale(1.06);
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__btn {
+  animation: none;
+  background: var(--navy-card, #12294B) !important;
+}
+
+@keyframes rrFabPulse {
+  0% {
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, .35), 0 0 0 0 rgba(200, 163, 77, .5);
+  }
+
+  65% {
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, .35), 0 0 0 14px rgba(200, 163, 77, 0);
+  }
+
+  100% {
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, .35), 0 0 0 0 rgba(200, 163, 77, 0);
+  }
+}
+
+/* Icons inside main button */
+.rr-speed-dial__msg-ico,
+.rr-speed-dial__close-ico {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .35s var(--ease-out), opacity .3s ease;
+}
+
+.rr-speed-dial__msg-ico {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  color: var(--gold);
+}
+
+.rr-speed-dial__close-ico {
+  opacity: 0;
+  transform: scale(0.6) rotate(-90deg);
+  color: #ffffff;
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__msg-ico {
+  opacity: 0;
+  transform: scale(0.6) rotate(90deg);
+}
+
+.rr-speed-dial.is-open .rr-speed-dial__close-ico {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Back-To-Top button on right side, aligned neatly below the floating social dial */
+.ft__fab {
+  left: auto !important;
+  right: clamp(22px, 2.4vw, 28px) !important;
+  bottom: clamp(16px, 2.2vw, 22px) !important;
+  z-index: 9998 !important;
+}
+
+@media (max-width: 560px) {
+  .rr-speed-dial {
+    right: 14px !important;
+    bottom: 68px !important;
+  }
+
+  .rr-speed-dial__btn {
+    width: 52px;
+    height: 52px;
+  }
+
+  .rr-speed-dial__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .ft__fab {
+    right: 18px !important;
+    bottom: 14px !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* ============================================================
+   INTRO STATS BAR (NUMBER ON TOP, 2-LINE CONTENT BELOW - CENTERED)
+   ============================================================ */
+.s2__statsGrid {
+  align-items: start !important;
+  justify-items: center !important;
+}
+
+.stat2 {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: clamp(10px, 1.3vw, 16px) !important;
+  width: 100% !important;
+}
+
+.stat2__num {
+  line-height: 1 !important;
+  font-size: clamp(2.8rem, 4.4vw, 4.2rem) !important;
+  margin-bottom: 0 !important;
+  min-width: 0 !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.stat2__label {
+  padding-top: 0 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.stat2__label b {
+  display: block !important;
+  font-size: clamp(.84rem, .95vw, .92rem) !important;
+  font-weight: 600 !important;
+  color: var(--navy) !important;
+  margin-bottom: 6px !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+  text-align: center !important;
+}
+
+.stat2__label span {
+  display: block !important;
+  font-size: clamp(.76rem, .84vw, .82rem) !important;
+  line-height: 1.55 !important;
+  color: var(--ink-body) !important;
+  max-width: 28ch !important;
+  margin-inline: auto !important;
+  text-align: center !important;
+}
+
+/* ============================================================
+   FOOTER BACKGROUND OVERLAY
+   ============================================================ */
+.ft__bg::after {
+  background: linear-gradient(180deg, rgba(7, 20, 38, .64) 0%, rgba(7, 20, 38, .48) 28%, rgba(7, 20, 38, .64) 65%, rgba(7, 20, 38, .88) 100%) !important;
+}
+
+
+/* Shared header and matching brand lockup updates */
+.brand {
+  gap: 0;
+  flex: 0 0 auto
+}
+
+.brand__logo {
+  display: block;
+  width: clamp(176px, 15vw, 225px);
+  height: auto;
+  max-height: 52px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .42));
+  transition: transform .35s var(--ease-out)
+}
+
+.brand:hover .brand__logo {
+  transform: translateY(-1px)
+}
+
+.ft__brandLogo {
+  display: block;
+  width: clamp(190px, 17vw, 225px);
+  height: auto;
+  max-height: 52px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 14px rgba(0, 0, 0, .4))
+}
+
+.hero__call {
+  gap: 12px;
+  padding: 8px 16px 8px 9px;
+  border: 1px solid rgba(200, 163, 77, .34);
+  background: rgba(7, 22, 43, .24);
+  border-radius: 999px
+}
+
+.hero__call i {
+  width: 42px;
+  height: 42px
+}
+
+.hero__callTx small {
+  font-size: .62rem
+}
+
+.hero__callTx span {
+  font-size: .9rem
+}
+
+@media(max-width:1080px) {
+  .hero__bar {
+    padding-block: 17px
+  }
+
+  .hero__barInner {
+    min-height: 64px;
+    gap: 16px
+  }
+
+  .burger {
+    display: inline-flex
+  }
+
+  .hero__call .hero__callTx {
+    display: flex;
+    flex-direction: column
+  }
+
+  .hero__call .hero__callTx small,
+  .hero__call .hero__callTx span {
+    display: block
+  }
+
+  .hero__call .hero__callTx span {
+    font-size: .82rem
+  }
+
+  .brand__logo {
+    width: clamp(176px, 22vw, 210px)
+  }
+}
+
+@media(max-width:760px) {
+  .hero__bar {
+    padding: 14px 18px
+  }
+
+  .hero__barInner {
+    min-height: 62px;
+    gap: 12px
+  }
+
+  .brand__logo {
+    width: clamp(150px, 38vw, 184px);
+    max-height: 42px
+  }
+
+  .hero__call {
+    padding: 5px;
+    border: 0;
+    background: transparent;
+    gap: 0
+  }
+
+  .hero__call i {
+    width: 42px;
+    height: 42px
+  }
+
+  .hero__call .hero__callTx {
+    display: none
+  }
+
+  .hero__actions {
+    gap: 8px
+  }
+
+  .burger {
+    width: 44px;
+    height: 44px
+  }
+}
+
+@media(max-width:380px) {
+  .brand__logo {
+    width: 142px
+  }
+
+  .hero__bar {
+    padding-inline: 14px
+  }
+
+  .hero__actions {
+    gap: 5px
+  }
+
+  .hero__call i {
+    width: 40px;
+    height: 40px
+  }
+
+  .burger {
+    width: 42px;
+    height: 42px
+  }
+}
+
+@media(max-width:560px) {
+  .ft__brandLogo {
+    width: 190px;
+    max-height: 42px
+  }
+}
+
+/* Requested header cleanup: remove the full-width divider and call-chip outline. */
+.hero__bar,
+.hero__bar.is-stuck {
+  border-bottom: 0 !important;
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.hero__call,
+.hero__call:hover,
+.hero__call:focus,
+.hero__call:focus-visible {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Footer social icons: keep inline SVGs visible and consistent across browsers. */
+.ft__socials .ft__soc {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  color: rgba(255, 255, 255, .9) !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.ft__socials .ft__soc>svg {
+  display: block !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  max-width: none !important;
+  max-height: none !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: currentColor !important;
+  flex: none !important;
+}
+
+.ft__socials .ft__soc>svg path,
+.ft__socials .ft__soc>svg circle,
+.ft__socials .ft__soc>svg rect,
+.ft__socials .ft__soc>svg line {
+  vector-effect: non-scaling-stroke;
+}
+
+/* Mobile and tablet: improve readability of menu contact links */
+@media (max-width: 1024px) {
+  .mmenu__foot a {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* Mobile/tablet menu contact details: stronger readable sizing */
+@media (max-width: 1024px) {
+  .mmenu .mmenu__foot a {
+    font-size: 1.1rem !important;
+    line-height: 1.55 !important;
+  }
+}
+
+/* Tablet and mobile: make the bottom contact block larger and keep it visible in the open menu */
+@media (max-width: 1024px) {
+  .mmenu .mmenu__foot {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: auto !important;
+    padding: 28px 0 calc(24px + env(safe-area-inset-bottom)) !important;
+    gap: 12px !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .mmenu.is-open .mmenu__foot {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .mmenu .mmenu__foot>span {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .mmenu .mmenu__foot a {
+    font-size: 1.2rem !important;
+    line-height: 1.55 !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+/* Further enlarge mobile/tablet menu contact information */
+@media (max-width: 1024px) {
+  .mmenu .mmenu__foot {
+    padding-top: 34px !important;
+    padding-bottom: calc(30px + env(safe-area-inset-bottom)) !important;
+    gap: 14px !important;
+  }
+
+  .mmenu .mmenu__foot>span {
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .mmenu .mmenu__foot a {
+    font-size: 1.35rem !important;
+    line-height: 1.6 !important;
+  }
+}
+
+
+
+/* GTranslate switcher placed inside the footer */
+.ft__language-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 18px 0 14px;
+  position: relative;
+  z-index: 2
+}
+
+.ft__language-switcher .gtranslate_wrapper {
+  display: block
+}
+
+
+/* GTranslate fixed from footer markup across all pages */
+.ft__language-switcher {
+  position: fixed !important;
+  left: 15px;
+  bottom: 15px;
+  margin: 0 !important;
+  z-index: 9998;
+  display: block
+}
+
+@media(max-width:767px) {
+  .ft__language-switcher {
+    left: 10px;
+    bottom: 10px
+  }
+}
+
+/* Site-wide typography foundation.
+   Component styles remain in control of cards, FAQs, captions and labels.
+   Long-form reading areas share one readable body scale. */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+body .entry-content p,
+body .post-content p,
+body .page-content p,
+body .po-body p,
+body .rr-page__body p {
+  font-size: clamp(16px, 1.05vw, 17px);
+  line-height: 1.75;
+}
+
+body small,
+body .tag,
+body .eyebrow,
+body .meta,
+body .post-meta,
+body .caption,
+body .form-label,
+body label {
+  line-height: 1.5;
+}
+
+body button,
+body .pill,
+body input,
+body select,
+body textarea {
+  font-family: var(--body);
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 16px;
+  }
+
+  body .entry-content p,
+  body .post-content p,
+  body .page-content p,
+  body .po-body p,
+  body .rr-page__body p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}
+
+
+/* Consistent typography for all primary section headings across the website */
+body .s2 h2,
+body .wi h2,
+body .sv h2,
+body .ts h2,
+body .wc h2,
+body .fq h2,
+body .ct h2,
+body .ab-us__copy h2,
+body .ab-why__head h2,
+body .ab-close h2,
+body .ab-license-wrap>h2,
+body .bl-titles h2 {
+  font-size: clamp(1.8rem, 3.5vw, 3.35rem) !important;
+  line-height: 1.08 !important;
+}
+
+@media(max-width: 767px) {
+
+  body .s2 h2,
+  body .wi h2,
+  body .sv h2,
+  body .ts h2,
+  body .wc h2,
+  body .fq h2,
+  body .ct h2,
+  body .ab-us__copy h2,
+  body .ab-why__head h2,
+  body .ab-close h2,
+  body .ab-license-wrap>h2,
+  body .bl-titles h2 {
+    font-size: clamp(1.75rem, 7vw, 2.15rem) !important;
+    line-height: 1.1 !important;
+  }
+}
+
+/* Paragraph sizing is defined by the shared typography foundation above and each component's own styles. */
+
+/* Refined mobile navigation: balanced typography, centered menu column and compact contact block */
+@media(max-width:1080px) {
+  .mmenu {
+    justify-content: flex-start !important;
+    overflow-y: auto !important;
+    padding: 86px 24px calc(22px + env(safe-area-inset-bottom)) !important;
+    gap: 0 !important
+  }
+
+  .mmenu>a:not(.mmenu__cta) {
+    width: min(100%, 560px) !important;
+    margin-inline: auto !important;
+    padding: 13px 4px !important;
+    font-family: var(--body, inherit) !important;
+    font-size: 21px !important;
+    font-weight: 500 !important;
+    line-height: 1.35 !important;
+    letter-spacing: -.01em !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .09) !important
+  }
+
+  .mmenu .mmenu__cta {
+    width: min(100%, 560px) !important;
+    margin: 18px auto 8px !important;
+    min-height: 46px !important;
+    justify-content: center !important;
+    font-size: 14px !important
+  }
+
+  .mmenu .mmenu__foot {
+    width: min(100%, 560px) !important;
+    margin: 12px auto 0 !important;
+    padding: 18px 4px calc(14px + env(safe-area-inset-bottom)) !important;
+    gap: 8px !important;
+    border-top: 1px solid rgba(255, 255, 255, .12) !important
+  }
+
+  .mmenu .mmenu__foot>span {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    color: rgba(255, 255, 255, .58) !important;
+    margin-bottom: 2px !important
+  }
+
+  .mmenu .mmenu__foot a {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    font-weight: 500 !important;
+    color: var(--gold) !important
+  }
+}
+
+@media(max-width:420px) {
+  .mmenu {
+    padding-left: 20px !important;
+    padding-right: 20px !important
+  }
+
+  .mmenu>a:not(.mmenu__cta) {
+    font-size: 20px !important;
+    padding: 12px 4px !important
+  }
+}
+
+/* Preserve the language switcher's original colors; only retain its existing placement. */
+
+/* Premium mobile navigation redesign */
+@media(max-width:1080px) {
+  .mmenu {
+    box-sizing: border-box !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 0 !important;
+    padding: 82px 24px 28px !important;
+    background: radial-gradient(ellipse at 12% 8%, rgba(200, 163, 77, .13), transparent 34%), linear-gradient(145deg, #102541 0%, #071626 68%, #061321 100%) !important;
+    overflow-y: auto !important
+  }
+
+  .mmenu:before {
+    content: 'EXPLORE REALTOR RAIHAN';
+    display: block;
+    width: min(100%, 520px);
+    margin: 0 auto 22px;
+    padding: 0 0 15px;
+    border-bottom: 1px solid rgba(200, 163, 77, .4);
+    color: #c8a34d;
+    font: 600 11px/1.3 var(--body, Arial, sans-serif);
+    letter-spacing: .2em
+  }
+
+  .mmenu>a:not(.mmenu__cta) {
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    width: min(100%, 520px) !important;
+    min-height: 58px !important;
+    margin: 0 auto !important;
+    padding: 10px 8px !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .10) !important;
+    color: #f6f4ef !important;
+    font: 500 clamp(21px, 5vw, 25px)/1.2 var(--display, Georgia, serif) !important;
+    letter-spacing: -.025em !important;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .35s ease, transform .35s ease, color .2s ease !important
+  }
+
+  .mmenu>a:not(.mmenu__cta):before {
+    counter-increment: mmenuitem;
+    content: '0' counter(mmenuitem);
+    display: inline-block;
+    width: 42px;
+    flex: 0 0 42px;
+    color: #c8a34d;
+    font: 500 11px/1 var(--body, Arial, sans-serif);
+    letter-spacing: .08em
+  }
+
+  .mmenu {
+    counter-reset: mmenuitem
+  }
+
+  .mmenu.is-open>a:not(.mmenu__cta) {
+    opacity: 1;
+    transform: none
+  }
+
+  .mmenu>a:not(.mmenu__cta):hover,
+  .mmenu>a:not(.mmenu__cta)[aria-current=page] {
+    color: #d6b45d !important
+  }
+
+  .mmenu__x {
+    top: 22px !important;
+    right: 22px !important;
+    width: 40px !important;
+    height: 40px !important;
+    border: 1px solid rgba(200, 163, 77, .45) !important;
+    background: rgba(255, 255, 255, .06) !important;
+    color: #f5f1e8 !important
+  }
+
+  .mmenu__ctaWrap {
+    width: min(100%, 520px) !important;
+    margin: 22px auto 0 !important;
+    padding: 0 8px 20px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .12) !important
+  }
+
+  .mmenu__ctaWrap .pill--gold {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-height: 52px !important;
+    margin: 0 !important;
+    border-radius: 8px !important;
+    font: 600 14px/1.2 var(--body, Arial, sans-serif) !important;
+    letter-spacing: .02em !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .2) !important
+  }
+
+  .mmenu .mmenu__foot {
+    box-sizing: border-box !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 9px !important;
+    width: min(100%, 520px) !important;
+    margin: 16px auto 0 !important;
+    padding: 4px 8px 14px !important;
+    border: 0 !important
+  }
+
+  .mmenu .mmenu__foot>span {
+    margin: 0 0 2px !important;
+    color: rgba(255, 255, 255, .55) !important;
+    font: 500 11px/1.3 var(--body, Arial, sans-serif) !important;
+    letter-spacing: .13em !important;
+    text-transform: uppercase
+  }
+
+  .mmenu .mmenu__foot a {
+    color: #e0bd63 !important;
+    font: 500 15px/1.45 var(--body, Arial, sans-serif) !important;
+    letter-spacing: 0 !important
+  }
+}
+
+@media(max-width:420px) {
+  .mmenu {
+    padding: 76px 20px 22px !important
+  }
+
+  .mmenu>a:not(.mmenu__cta) {
+    min-height: 54px !important;
+    font-size: 21px !important
+  }
+
+  .mmenu:before {
+    margin-bottom: 16px
+  }
+}
+
+/* Mobile menu: hide numbered prefixes while keeping the refined layout */
+@media(max-width:1080px) {
+  .mmenu>a:not(.mmenu__cta):before {
+    content: none !important;
+    display: none !important
+  }
+
+  .mmenu>a:not(.mmenu__cta) {
+    padding-left: 8px !important
+  }
+}
+
+/* Mobile menu: reduce gap before the fixed language switcher */
+@media(max-width:1080px) {
+  body .ft__language-switcher {
+    bottom: 8px !important;
+    left: 10px !important
+  }
+
+  .mmenu .mmenu__foot {
+    padding-bottom: 4px !important;
+    margin-bottom: 0 !important
+  }
+
+  .mmenu {
+    padding-bottom: 10px !important
+  }
+}
+
+/* Hide small eyebrow/tag labels across all website sections, keeping section headings and content intact. */
+body .tag,
+body .hero__tag {
+  display: none !important
+}
+
+/* Remove the remaining requested eyebrow labels only */
+body #why-choose .wc__meta,
+body .rr-page__head .rr-faq-eyebrow,
+body .ft__grid>.rv:last-child>.ft__h {
+  display: none !important
+}
+
+/* Remove remaining FAQ and Blog hero eyebrow labels */
+body .rr-faq-eyebrow,
+body .bl-meta-eyebrow {
+  display: none !important
+}
+
+/* ============================================================
+   MOBILE HOMEPAGE REFINEMENT
+   Mobile-only overrides. Desktop and tablet layouts are untouched.
+   ============================================================ */
+@media (max-width: 767px) {
+  body.home {
+    --gutter: 20px;
+    --sec-y: 40px;
+  }
+
+  body.home,
+  body.home #page,
+  body.home main {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  /* One shared left/right content edge across homepage sections. */
+  body.home .hero__inner,
+  body.home .s2__inner,
+  body.home #intro .s2__stats>.sec__wrap,
+  body.home .wi__wrap,
+  body.home .sv__wrap,
+  body.home .ts__wrap,
+  body.home .wc__wrap,
+  body.home .fq__wrap,
+  body.home .ct__wrap {
+    width: 100%;
+    max-width: 100%;
+    padding-left: var(--gutter) !important;
+    padding-right: var(--gutter) !important;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  /* Consistent vertical rhythm between the main homepage sections. */
+  body.home #intro .s2__inner {
+    padding-top: 40px;
+    padding-bottom: 0;
+  }
+
+  body.home #intro .s2__stats {
+    margin-bottom: 0;
+  }
+
+  body.home #intro .s2__stats>.sec__wrap {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  body.home .wi,
+  body.home .sv,
+  body.home .ts,
+  body.home .wc,
+  body.home .fq,
+  body.home .ct {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  body.home .dev-marquee {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+
+  /* Keep section headings, supporting copy and calls to action on one
+     consistent left edge rather than mixing left/right alignment. */
+  body.home .s2__head,
+  body.home .s2__aside,
+  body.home .s2__copy,
+  body.home .wi__head,
+  body.home .wi__teaserInner,
+  body.home .wi__teaserCopy,
+  body.home .sv__head,
+  body.home .sv__aside,
+  body.home .ts__head,
+  body.home .wc__head,
+  body.home .fq__left,
+  body.home .ct__left,
+  body.home .dev-marquee__head {
+    text-align: left;
+    justify-items: start;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  body.home .s2__head,
+  body.home .wi__head,
+  body.home .sv__head,
+  body.home .wc__head,
+  body.home .ts__head {
+    margin-bottom: 24px;
+  }
+
+  body.home .s2__aside {
+    padding-top: 16px;
+    margin-top: 0;
+  }
+
+  body.home .s2__body {
+    gap: 24px;
+  }
+
+  body.home .s2__copy p,
+  body.home .s2__aside p,
+  body.home .wi__aside p,
+  body.home .sv__aside p,
+  body.home .ts__lede,
+  body.home .fq__lede,
+  body.home .ct__lede {
+    max-width: none;
+    text-align: left;
+  }
+
+  body.home .s2__cta,
+  body.home .wi__teaserCta,
+  body.home .wc__cta,
+  body.home .fq__cta {
+    align-self: flex-start;
+    justify-self: start;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* The four experience stats use the same left edge as the copy above. */
+  body.home #intro .s2__statsGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    justify-items: stretch;
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+  }
+
+  body.home #intro .stat2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 20px 0 !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(13, 34, 61, .18);
+  }
+
+  body.home #intro .stat2:last-child {
+    border-bottom: 0;
+  }
+
+  body.home #intro .stat2__num {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    text-align: left;
+    font-size: clamp(2.55rem, 11vw, 2.9rem);
+  }
+
+  body.home #intro .stat2__label {
+    width: 100%;
+    padding: 0;
+    text-align: left;
+  }
+
+  body.home #intro .stat2__label b {
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  body.home #intro .stat2__label span {
+    max-width: none;
+    margin: 0;
+    text-align: left;
+  }
+
+  /* Cards, lists and forms should fill their available column without
+     creating a second, narrower alignment line. */
+  body.home .wi__cards,
+  body.home .sv__bento,
+  body.home .wc__grid,
+  body.home .fq__list,
+  body.home .ct__card,
+  body.home .ct__form {
+    width: 100%;
+    min-width: 0;
+  }
+
+  body.home .sv__bento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.home .sv__slider-track>.bento {
+    flex-basis: 100%;
+    width: 100%;
+    min-width: 0;
+  }
+
+  body.home .wcr,
+  body.home .wcr__main,
+  body.home .fqi__main {
+    min-width: 0;
+    text-align: left;
+  }
+
+  body.home .tcard {
+    text-align: left;
+  }
+
+  body.home .tcard__quote {
+    text-align: left;
+  }
+
+  body.home .dev-marquee__head {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+    box-sizing: border-box;
+  }
+
+  /* A consistent mobile reading size; preserve the hero's larger lead line. */
+  body.home section p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  body.home .hero .hero__say {
+    font-size: clamp(17px, 4.5vw, 19px) !important;
+    line-height: 1.4 !important;
+    max-width: 36ch;
+    white-space: normal;
+  }
+
+  body.home .hero .hero__lede {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  body.home .stat2__label b,
+  body.home .wcr h3,
+  body.home .fqi__q {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+  }
+
+  body.home .stat2__label span,
+  body.home .wcr p,
+  body.home .fqi__a {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+  }
+
+  body.home .ct__form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.home .ct__submit {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  body.home {
+    --gutter: 16px;
+  }
+
+  body.home .wi,
+  body.home .sv,
+  body.home .ts,
+  body.home .wc,
+  body.home .fq,
+  body.home .ct {
+    padding-top: 34px;
+    padding-bottom: 34px;
+  }
+
+  body.home #intro .s2__inner {
+    padding-top: 34px;
+  }
+}
+
+
+/* FAQ answer typography and narrow-screen text wrapping */
+@media (max-width: 767px) {
+  body.home .fq .fqi {
+    grid-template-columns: 34px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    box-sizing: border-box;
+  }
+
+  body.home .fq .fqi__main,
+  body.home .fq .fqi__btn,
+  body.home .fq .fqi__panel,
+  body.home .fq .fqi__inner {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  body.home .fq .fqi__q {
+    display: block;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+  }
+
+  body.home .fq .fqi__a {
+    max-width: none;
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+    font-weight: 400;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  body.home .fq .fqi__a strong,
+  body.home .fq .fqi__a b {
+    font-weight: 600;
+  }
+}
+
+
+
+/* ============================================================
+   GLOBAL SECTION SPACING NORMALIZATION
+   Keeps the existing layouts and component styling intact.
+   Only standardizes vertical spacing between page sections.
+   UNIFIED GLOBAL SECTION SPACING SYSTEM (ALL PAGES & SECTIONS)
+   Top and bottom vertical spacing are strictly identical across
+   every section on every page (Home, About, Blog, Contact,
+   Single Post, FAQ, and Default Pages).
+   ============================================================ */
+:root {
+  --rr-section-space: clamp(64px, 6.5vw, 96px);
+  --rr-section-space-tablet: 56px;
+  --rr-section-space-mobile: 44px;
+  --rr-sec-space: clamp(68px, 6vw, 70px);
+  --rr-sec-inner-gap: clamp(20px, 2.5vw, 32px);
+  --rr-sec-inner-gap: clamp(20px, 2.5vw, 32px);
+}
+
+/* Shared section system */
+@media (max-width: 1024px) {
+  :root {
+    --rr-sec-space: 58px;
+    --rr-sec-inner-gap: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --rr-sec-space: 44px;
+    --rr-sec-inner-gap: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --rr-sec-space: 38px;
+    --rr-sec-inner-gap: 16px;
+  }
+}
+
+/* Shared section spacing rules */
+
+  .ab-us,
+  .ab-license-area,
+  .ab-gallery,
+  .ab-close,
+  .bl-new,
+  .po-body,
+  body.single-post .po-body,
+  .po-next,
+  .rr-page__body,
+  body.page-id-138 .rr-page__body,
+  .ct-page-main .ct {
+    padding-top: var(--rr-sec-space) !important;
+    padding-bottom: var(--rr-sec-space) !important;
+    padding-block: var(--rr-sec-space) !important;
+  }
+
+  /* Sections whose inner wrapper owns the vertical spacing */
+  .s2 {
+    padding-block: 0 !important;
+  }
+
+  /* 2. Intro Section (#intro / .s2): symmetrical outer spacing */
+  .s2 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-block: 0 !important;
+  }
+
+  .s2__inner {
+    padding-top: var(--rr-sec-space) !important;
+    padding-bottom: var(--rr-sec-inner-gap) !important;
+  }
+
+  .s2__stats {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .s2__stats>.sec__wrap {
+    padding-block: var(--rr-section-space) !important;
+    padding-top: var(--rr-sec-inner-gap) !important;
+    padding-bottom: var(--rr-sec-space) !important;
+  }
+
+  /* Keep page-template content pages on the same vertical rhythm */
+  body.rr-wp .rr-page {
+    padding-top: calc(var(--barh, 0px) + clamp(48px, 5.5vw, 76px));
+    padding-bottom: var(--rr-section-space);
+
+    }
+
+  /* 3. Blog Page: Titles + List rhythm */
+    .bl-titles {
+      padding-top: var(--rr-sec-space) !important;
+      padding-bottom: clamp(12px, 1.5vw, 18px) !important;
+    }
+
+    @media (max-width: 1024px) {
+
+      .sec,
+      .s2__stats,
+      .wi,
+      .sv,
+      .ts,
+      .wc,
+      .fq,
+      .ct,
+      .dev-marquee,
+      .ab-gallery {
+        padding-block: var(--rr-section-space-tablet) !important;
+      }
+
+      .s2 {
+        padding-block: 0 !important;
+      }
+
+      .s2__stats>.sec__wrap {
+        padding-block: var(--rr-section-space-tablet) !important;
+      }
+
+      .bl-list {
+        padding-top: clamp(12px, 1.5vw, 18px) !important;
+        padding-bottom: var(--rr-sec-space) !important;
+      }
+
+    }
+
+    @media (max-width: 560px) {
+
+        .sec,
+        .s2__stats,
+        .wi,
+        .sv,
+        .ts,
+        .wc,
+        .fq,
+        .ct,
+        .dev-marquee,
+        .ab-gallery {
+          padding-block: var(--rr-section-space-mobile) !important;
+        }
+
+        .s2 {
+          padding-block: 0 !important;
+        }
+
+        .s2__stats>.sec__wrap {
+          padding-block: var(--rr-section-space-mobile) !important;
+        }
+
+        body.rr-wp .rr-page {
+          padding-top: calc(var(--barh, 0px) + 40px);
+          padding-bottom: var(--rr-section-space-mobile);
+        }
+
+        }
+
+        /* 4. Single Post & General Page Content wrapper */
+        body.rr-wp .rr-page {
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
+
+
+        /* Mobile only: move the Why Choose Me CTA below all benefit rows. */
+        @media (max-width: 767px) {
+          body.home #why-choose .wc__wrap {
+            display: flex !important;
+            flex-direction: column !important;
+          }
+
+          body.home #why-choose .wc__head {
+            display: contents !important;
+          }
+
+          body.home #why-choose .wc__head>h2 {
+            order: 1 !important;
+          }
+
+          body.home #why-choose .wc__grid {
+            order: 2 !important;
+          }
+
+          body.home #why-choose .wc__cta {
+            order: 3 !important;
+            align-self: stretch !important;
+            width: 100% !important;
+            max-width: none !important;
+            margin-top: 22px !important;
+          }
+        }
+
+
+        /* Mobile only: center-align all text in the Why Choose Me section. */
+        @media (max-width: 767px) {
+
+          body.home #why-choose .wc__wrap,
+          body.home #why-choose .wc__head,
+          body.home #why-choose .wc__head h2,
+          body.home #why-choose .wc__list,
+          body.home #why-choose .wcr,
+          body.home #why-choose .wcr__main,
+          body.home #why-choose .wcr h3,
+          body.home #why-choose .wcr p {
+            text-align: center !important;
+          }
+
+          body.home #why-choose .wc__head,
+          body.home #why-choose .wcr__main {
+            justify-items: center !important;
+            align-items: center !important;
+          }
+
+          body.home #why-choose .wc__cta {
+            justify-content: center !important;
+            text-align: center !important;
+          }
+        }
+
+
+        /* Mobile homepage hero: remove the full-viewport height constraint. */
+        @media (max-width: 767px) {
+          body.home .hero {
+            min-height: 0 !important;
+            height: auto !important;
+          }
+        }
+
+
+        /* Mobile homepage hero: reduce the empty space above the heading and move
+   that breathing room below the hero content instead. */
+        @media (max-width: 767px) {
+          body.home .hero__main {
+            align-items: flex-start !important;
+            padding-top: 12px !important;
+            padding-bottom: 48px !important;
+          }
+        }
+
+
+        /* Mobile Why Choose Me: add breathing room between the final benefit text
+   and the Contact Me button. */
+        @media (max-width: 767px) {
+          body.home #why-choose .wc__cta {
+            margin-top: 34px !important;
+          }
+        }
+
+
+        /* Mobile Why Choose Me: left-align the heading and benefit text. */
+        @media (max-width: 767px) {
+
+          body.home #why-choose .wc__head,
+          body.home #why-choose .wc__head h2,
+          body.home #why-choose .wc__list,
+          body.home #why-choose .wcr,
+          body.home #why-choose .wcr__main,
+          body.home #why-choose .wcr h3,
+          body.home #why-choose .wcr p {
+            text-align: left !important;
+          }
+
+          body.home #why-choose .wc__head,
+          body.home #why-choose .wcr__main {
+            justify-items: start !important;
+            align-items: flex-start !important;
+          }
+        }
+
+
+        /* Mobile homepage FAQ: place the Ask Me Directly CTA after the full FAQ list. */
+        @media (max-width: 767px) {
+          body.home #faq .fq__wrap {
+            display: flex !important;
+            flex-direction: column !important;
+          }
+
+          body.home #faq .fq__left {
+            display: contents !important;
+          }
+
+          body.home #faq .fq__eyebrow {
+            order: 1 !important;
+          }
+
+          body.home #faq #fq-title {
+            order: 2 !important;
+          }
+
+          body.home #faq .fq__lede {
+            order: 3 !important;
+          }
+
+          body.home #faq .fq__list {
+            order: 4 !important;
+            width: 100% !important;
+          }
+
+          body.home #faq .fq__cta {
+            order: 5 !important;
+            align-self: stretch !important;
+            width: 100% !important;
+            max-width: none !important;
+            margin-top: 24px !important;
+            justify-content: center !important;
+          }
+        }
+
+
+        /* Mobile homepage experience stats: align numbers, labels and descriptions left. */
+        @media (max-width: 767px) {
+
+          body.home #intro .s2__statsGrid,
+          body.home #intro .stat2,
+          body.home #intro .stat2__label {
+            justify-items: start !important;
+            align-items: flex-start !important;
+            text-align: left !important;
+          }
+
+          body.home #intro .stat2__num,
+          body.home #intro .stat2__label b,
+          body.home #intro .stat2__label span {
+            display: block !important;
+            width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            text-align: left !important;
+          }
+        }
+
+
+        /* Mobile homepage: tighten the intro-to-stats gap and use one spacing rhythm
+   across every main section. */
+        /* Mobile homepage intro clean layout */
+        @media (max-width: 767px) {
+          body.home {
+            --rr-section-space-mobile: 32px;
+          }
+
+          body.home .wi,
+          body.home .sv,
+          body.home .ts,
+          body.home .wc,
+          body.home .fq,
+          body.home .ct,
+          body.home .dev-marquee {
+            padding-top: 32px !important;
+            padding-bottom: 32px !important;
+          }
+
+          body.home #intro .s2__inner {
+            padding-bottom: 24px !important;
+          }
+
+          body.home #intro .s2__body {
+            display: block !important;
+            gap: 0 !important;
+          }
+
+          body.home #intro .s2__media {
+            display: none !important;
+          }
+
+          body.home #intro .s2__stats {
+            margin: 0 !important;
+          }
+
+          body.home #intro .s2__stats>.sec__wrap {
+            padding-top: 24px !important;
+            padding-bottom: 24px !important;
+          }
+        }
+
+
+        /* Mobile intro section: close the excess gap between Contact Me and the stats. */
+        @media (max-width: 767px) {
+          body.home #intro .s2__inner {
+            padding-bottom: 8px !important;
+          }
+
+          body.home #intro .s2__body {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+          }
+
+          body.home #intro .s2__copy {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+          }
+
+          body.home #intro .s2__cta {
+            margin-bottom: 0 !important;
+          }
+
+          body.home #intro .s2__stats>.sec__wrap {
+            padding-top: 8px !important;
+            padding-bottom: 16px !important;
+          }
+
+          body.home #intro .stat2 {
+            padding-top: 14px !important;
+            padding-bottom: 14px !important;
+          }
+        }
+
+
+        /* FINAL MOBILE SPACING SYSTEM
+   One consistent 24px section inset on all homepage sections.
+   Overrides older per-section spacing values above. */
+        @media (max-width: 767px) {
+
+          body.home .wi,
+          body.home .sv,
+          body.home .ts,
+          body.home .wc,
+          body.home .fq,
+          body.home .ct,
+          body.home .dev-marquee {
+            padding-top: 24px !important;
+            padding-bottom: 24px !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+          }
+
+          body.home #intro .s2__inner {
+            padding-bottom: 24px !important;
+          }
+
+          body.home #intro .s2__stats {
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+
+          body.home #intro .s2__stats>.sec__wrap {
+            padding-top: 24px !important;
+            padding-bottom: 24px !important;
+          }
+
+          body.home #intro .stat2 {
+            margin-top: 0 !important;
+          }
+
+          body.home .wi--teaser .wi__meta {
+            margin-bottom: 16px !important;
+          }
+
+  body.home .wi--teaser .wi__teaserInner {
+    gap: 16px !important;
+  }
+
+  body.home .wi--teaser .wi__teaserCopy p {
+    margin-top: 12px !important;
+  }
+
+/* Final mobile homepage spacing override: make section breathing room visible. */
+@media (max-width: 767px) {
+  body.home .wi,
+  body.home .sv,
+  body.home .ts,
+  body.home .wc,
+  body.home .fq,
+  body.home .ct,
+  body.home .dev-marquee {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
+
+  body.home #intro .s2__inner {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  body.home #intro .s2__stats > .sec__wrap {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+}
+
+/* Final mobile spacing rules. Keep these top-level so they override legacy rules. */
+@media (max-width: 767px) {
+  body.home .hero__main {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
+
+  body.home #intro .s2__inner {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  body.home .wi,
+  body.home .sv,
+  body.home .ts,
+  body.home .wc,
+  body.home .fq,
+  body.home .ct,
+  body.home .dev-marquee {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
+}

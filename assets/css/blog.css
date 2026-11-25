@@ -1,0 +1,618 @@
+/* =========================================================================
+   BLOG PAGE
+   Same navy / cream rhythm as the home page. Editorial cards, one featured
+   post, and a category rail.
+   ========================================================================= */
+
+.bl-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--navy);
+  color: #fff;
+  min-height: clamp(400px, 58vh, 560px);
+  display: flex;
+  align-items: flex-end;
+  padding-block: calc(var(--barh, 91px) + clamp(80px, 11vw, 140px)) clamp(48px, 6vw, 86px)
+}
+
+.bl-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2
+}
+
+.bl-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden
+}
+
+.bl-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  transform: scale(1.05);
+  animation: blDrift 24s var(--ease-io) infinite alternate
+}
+
+@keyframes blDrift {
+  from {
+    transform: scale(1.05) translate3d(0, 0, 0)
+  }
+
+  to {
+    transform: scale(1.13) translate3d(-1.2%, -1%, 0)
+  }
+}
+
+.bl-hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 96% at 18% 10%, rgba(7, 20, 38, .34) 0%, rgba(7, 20, 38, .76) 66%, rgba(7, 20, 38, .9) 100%),
+    linear-gradient(180deg, rgba(7, 20, 38, .5) 0%, rgba(9, 25, 48, .4) 46%, rgba(9, 25, 48, .72) 100%)
+}
+
+.bl-hero__wrap {
+  width:100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  text-align:center;
+}
+.bl-hero__wrap .bl-meta-eyebrow{justify-content:center}
+.bl-hero__wrap .bl-hero__lede{margin-left:auto;margin-right:auto}
+.bl-hero__wrap .bl-crumb{justify-content:center}
+
+.bl-meta-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 0 clamp(14px, 1.8vw, 22px)
+}
+
+.bl-meta-eyebrow i {
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  background: var(--gold);
+  flex: none
+}
+
+.bl-meta-eyebrow span {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .78)
+}
+
+.bl-hero h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  margin: 0;
+  font-size: clamp(2.1rem, 5vw, 4rem);
+  line-height: 1.03;
+  letter-spacing: -.03em
+}
+
+.bl-hero h1 em {
+  font-style: normal;
+  color: var(--gold)
+}
+
+.bl-hero__lede {
+  margin: clamp(16px, 2vw, 22px) 0 0;
+  max-width: 62ch;
+  font-size: clamp(.95rem, 1.06vw, 1.04rem);
+  line-height: 1.72;
+  color: var(--navy-text)
+}
+
+/* ---------- intro + card grid (Luxoria-style collection page) ---------- */
+.bl-titles {
+  background: var(--cream);
+  padding-block: clamp(34px, 5vw, 68px) clamp(6px, 1vw, 12px)
+}
+
+.bl-titles__wrap {
+  max-width: min(820px, 100%);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  text-align: center
+}
+
+.bl-titles h2 {
+  margin: 12px 0 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.06;
+  letter-spacing: var(--ls-h2);
+  color: var(--ink)
+}
+
+.bl-titles h2 em {
+  font-style: normal;
+  color: var(--gold)
+}
+
+.bl-list {
+  position: relative;
+  background: var(--cream);
+  color: var(--navy);
+  padding-block: clamp(24px, 3.4vw, 42px) clamp(40px, 6vw, 84px)
+}
+
+.bl-list__wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter)
+}
+
+.bl-list__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2vw, 26px);
+  flex-wrap: wrap;
+  margin-bottom: clamp(24px, 3vw, 40px)
+}
+
+.bl-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center
+}
+
+.bl-chip {
+  padding: 9px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--body);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--navy);
+  background: transparent;
+  border: 1px solid rgba(11, 31, 58, .18);
+  transition: background .35s var(--ease-out), color .35s var(--ease-out),
+    border-color .35s var(--ease-out), transform .35s var(--ease-out)
+}
+
+.bl-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold)
+}
+
+.bl-chip.is-on {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy)
+}
+
+.bl-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.2vw, 30px)
+}
+
+.bl-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--line);
+  box-shadow: 0 22px 50px -46px rgba(11, 31, 58, .5);
+  transition: transform .5s var(--ease-out), box-shadow .5s var(--ease-out),
+    border-color .45s var(--ease-out)
+}
+
+.bl-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(200, 163, 77, .55);
+  box-shadow: 0 34px 60px -36px rgba(11, 31, 58, .42)
+}
+
+.bl-card__img {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/10.4;
+  background: var(--cream-2)
+}
+
+.bl-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .9s var(--ease-out)
+}
+
+.bl-card:hover .bl-card__img img {
+  transform: scale(1.06)
+}
+
+.bl-card__body {
+  padding: clamp(16px, 1.9vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1
+}
+
+.bl-card__date {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  color: var(--ink-mute);
+  margin: 0
+}
+
+.bl-card__date i {
+  width: 4px;
+  height: 4px;
+  border-radius: 1px;
+  background: var(--gold);
+  flex: none
+}
+
+.bl-card h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.06rem, 1.5vw, 1.3rem);
+  line-height: 1.2;
+  letter-spacing: -.022em;
+  color: var(--navy);
+  transition: color .35s var(--ease-out)
+}
+
+.bl-card:hover h3 {
+  color: #0B1F3A
+}
+
+.bl-card p {
+  margin: 0;
+  font-size: .87rem;
+  line-height: 1.66;
+  color: var(--ink-body);
+  flex: 1
+}
+
+.bl-card .bl-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 4px;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: #9A7A2E;
+  white-space: nowrap
+}
+
+.bl-card .bl-more svg {
+  flex: none;
+  transition: transform .42s var(--ease-out)
+}
+
+.bl-card:hover .bl-more svg {
+  transform: translate(3px, -3px)
+}
+
+/* ---------- newsletter ---------- */
+.bl-new {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--navy);
+  color: #fff;
+  padding-block: clamp(52px, 6vw, 86px)
+}
+
+.bl-new::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(110% 130% at 18% 0%, rgba(200, 163, 77, .18), transparent 58%)
+}
+
+.bl-new__wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .86fr);
+  gap: clamp(24px, 4vw, 60px);
+  align-items: center
+}
+
+.bl-new h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  line-height: 1.1;
+  letter-spacing: -.028em
+}
+
+.bl-new h2 em {
+  font-style: normal;
+  color: var(--gold)
+}
+
+.bl-new p {
+  margin: clamp(10px, 1.2vw, 14px) 0 0;
+  font-size: .92rem;
+  line-height: 1.7;
+  color: var(--navy-text);
+  max-width: 48ch
+}
+
+.bl-new form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap
+}
+
+.bl-new input {
+  flex: 1 1 220px;
+  min-width: 0;
+  font-family: var(--body);
+  font-size: .9rem;
+  color: #fff;
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(160, 185, 225, .26);
+  border-radius: 11px;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color .35s var(--ease-out), background .35s var(--ease-out)
+}
+
+.bl-new input::placeholder {
+  color: rgba(255, 255, 255, .36)
+}
+
+.bl-new input:focus {
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, .09)
+}
+
+.bl-new .pill {
+  flex: none
+}
+
+.bl-new small {
+  display: block;
+  margin-top: 10px;
+  font-size: .72rem;
+  color: var(--navy-mute)
+}
+
+/* ---------- responsive ---------- */
+@media(max-width:1024px) {
+  .bl-feat__card {
+    grid-template-columns: 1fr
+  }
+
+  .bl-list {
+    padding-block: 40px
+  }
+
+  .bl-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  }
+
+  .bl-new__wrap {
+    grid-template-columns: 1fr
+  }
+}
+
+@media(max-width:560px) {
+  .bl-hero {
+    padding-block: 36px 32px
+  }
+
+  .bl-list {
+    padding-block: 30px
+  }
+
+  .bl-grid {
+    grid-template-columns: 1fr
+  }
+
+  .bl-new {
+    padding-block: 40px
+  }
+
+  .bl-new .pill {
+    width: 100%;
+    justify-content: center
+  }
+}
+
+@media(max-width:1024px) {
+  .bl-grid {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .bl-list {
+    padding-block: 40px 40px
+  }
+
+  .bl-titles {
+    padding-block: 40px 10px
+  }
+}
+
+@media(max-width:640px) {
+  .bl-grid {
+    grid-template-columns: 1fr
+  }
+
+  .bl-list {
+    padding-block: 30px 30px
+  }
+
+  .bl-titles {
+    padding-block: 30px 8px
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+  .bl-card,
+  .bl-feat__card,
+  .bl-card__img img,
+  .bl-feat__img img {
+    transition: none !important
+  }
+
+  .bl-card:hover,
+  .bl-feat__card:hover {
+    transform: none
+  }
+
+  .bl-card:hover .bl-card__img img,
+  .bl-feat__card:hover .bl-feat__img img {
+    transform: none
+  }
+}
+
+/* Blog hero breadcrumb */
+.bl-crumb{display:flex;align-items:center;justify-content:center;gap:11px;margin-top:20px;font-size:.82rem;letter-spacing:.02em;color:rgba(255,255,255,.66)}
+.bl-crumb a{color:rgba(255,255,255,.82);text-decoration:none;transition:color .32s var(--ease-out)}
+.bl-crumb a:hover{color:var(--gold-lt)}
+.bl-crumb i{width:4px;height:4px;border-radius:50%;background:var(--gold);flex:none}
+.bl-crumb span{color:#fff}
+
+/* Mobile blog cards: keep date, category and reading time on a clean meta row */
+.bl-card__body{min-width:0;box-sizing:border-box}
+.bl-card__date{
+  display:flex;align-items:center;justify-content:flex-start;flex-wrap:nowrap;
+  gap:8px;min-width:0;white-space:nowrap;font-size:12px;letter-spacing:.025em;
+}
+.bl-card__date > span{display:block;flex:0 0 auto;min-width:0;white-space:nowrap;line-height:1.35}
+.bl-card__date > i{display:block;flex:0 0 4px;width:4px;height:4px;margin:0}
+.bl-card__date > span:last-child{margin-left:auto}
+@media(max-width:640px){
+  .bl-card{width:100%;max-width:100%;min-width:0;border-radius:16px}
+  .bl-card__img{aspect-ratio:16/9}
+  .bl-card__body{padding:18px 16px;gap:10px}
+  .bl-card__date{gap:7px;font-size:11.5px;letter-spacing:.015em}
+  .bl-card h3{font-size:18px;line-height:1.28}
+  .bl-card p{font-size:14px;line-height:1.6}
+  .bl-card .bl-more{font-size:12px;margin-top:2px}
+}
+@media(max-width:380px){
+  .bl-card__body{padding:16px 13px}
+  .bl-card__date{gap:5px;font-size:10.5px;letter-spacing:0}
+}
+
+/* Blog pagination: right-aligned, accessible and responsive */
+.bl-pager{
+  display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;
+  gap:8px;margin:clamp(28px,3.5vw,44px) 0 0;width:100%;
+}
+.bl-pager .page-numbers{
+  display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:42px;
+  padding:0 13px;border:1px solid rgba(11,31,58,.18);border-radius:999px;
+  background:#fff;color:var(--navy);font-family:var(--body);font-size:13px;font-weight:600;
+  line-height:1;text-decoration:none;transition:background .25s ease,color .25s ease,border-color .25s ease;
+}
+.bl-pager a.page-numbers:hover,.bl-pager .page-numbers.current{
+  background:var(--navy);border-color:var(--navy);color:#fff;
+}
+.bl-pager .page-numbers.dots{border-color:transparent;background:transparent;color:var(--ink-body)}
+.bl-pager .page-numbers.prev,.bl-pager .page-numbers.next{padding-inline:18px}
+@media(max-width:560px){
+  .bl-pager{justify-content:flex-end;gap:6px;margin-top:26px}
+  .bl-pager .page-numbers{min-width:38px;height:38px;padding-inline:10px;font-size:12px}
+  .bl-pager .page-numbers.prev,.bl-pager .page-numbers.next{padding-inline:13px}
+}
+
+
+/* Blog archive hero: keep all hero content horizontally centered. */
+.bl-hero__wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.bl-hero__wrap .bl-meta-eyebrow,
+.bl-hero__wrap .bl-crumb {
+  justify-content: center !important;
+  width: 100%;
+  text-align: center !important;
+}
+
+.bl-hero__wrap h1,
+.bl-hero__wrap .bl-hero__lede {
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+
+/* Mobile blog hero: remove excess vertical space above and below the copy. */
+@media (max-width: 560px) {
+  .bl-hero {
+    min-height: 0 !important;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    align-items: center !important;
+  }
+
+  .bl-hero__wrap {
+    margin-block: 0 !important;
+  }
+}
+
+
+/* Mobile blog hero: provide balanced breathing room above and below content. */
+@media (max-width: 560px) {
+  .bl-hero {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+}
+
+
+/* Slightly increase mobile blog hero breathing room on both sides. */
+@media (max-width: 560px) {
+  .bl-hero {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+  }
+}
+
+/* Mobile blog hero: reduce space above content and add breathing room below. */
+@media (max-width: 560px) {
+  .bl-hero {
+    padding-top: 14px !important;
+    padding-bottom: 66px !important;
+  }
+}
+
+/* Mobile blog hero: add clear space below the fixed site header. */
+@media (max-width: 560px) {
+  .bl-hero {
+    padding-top: 96px !important;
+  }
+}

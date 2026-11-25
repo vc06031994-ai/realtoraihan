@@ -1,0 +1,284 @@
+/* 03-why-invest */
+
+/* ================= SECTION 03 · WHY INVEST IN DUBAI =================
+   Dark navy band. 13 photographic cards — first one is a wide feature
+   card spanning two columns. Content: client PDF verbatim, all 13 topics.
+   Motion: masked heading · card clip-unveil · staggered rise ·
+           image ken-burns · 3D pointer tilt · gold sheen sweep ·
+           counter · pointer spotlight.
+   =================================================================== */
+
+.wi{
+  background:var(--navy);color:#fff;position:relative;overflow:hidden;isolation:isolate;
+  padding-block:100px;
+}
+.wi__spot{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(620px circle at var(--mx,60%) var(--my,20%),
+    rgba(200,163,77,.14),transparent 64%);
+  opacity:0;transition:opacity .9s var(--ease-out)}
+.wi.is-live .wi__spot{opacity:1}
+
+.wi__gridTex{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55;
+  background-image:
+    linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px),
+    linear-gradient(0deg,rgba(255,255,255,.026) 1px,transparent 1px);
+  background-size:120px 120px;
+  mask-image:radial-gradient(85% 75% at 25% 20%,#000,transparent);
+  -webkit-mask-image:radial-gradient(85% 75% at 25% 20%,#000,transparent)}
+
+.wi__ghost{position:absolute;z-index:0;left:-.04em;bottom:-.16em;
+  font-family:var(--display);font-weight:400;line-height:.7;letter-spacing:-.06em;
+  font-size:clamp(8rem,16vw,15rem);color:transparent;
+  -webkit-text-stroke:1px rgba(200,163,77,.14);pointer-events:none;user-select:none;
+  opacity:0;transform:translateY(30px);
+  transition:opacity 1.5s var(--ease-out) .2s,transform 1.5s var(--ease-out) .2s}
+.wi.is-live .wi__ghost{opacity:1;transform:none}
+
+.wi__wrap{position:relative;z-index:1;max-width:var(--maxw);
+  margin-inline:auto;padding-inline:var(--gutter)}
+
+/* ---------------- head ---------------- */
+.wi__meta{display:flex;align-items:center;gap:16px;margin-bottom:clamp(20px,2.4vw,30px)}
+
+.wi__head{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.9fr);
+  gap:clamp(30px,4.6vw,72px);align-items:start;
+  margin-bottom:clamp(30px,3.8vw,50px)}
+
+.wi h2{font-size:clamp(1.8rem,3.5vw,3.35rem);line-height:1.06;letter-spacing:-.028em;
+  color:#fff;margin:0;max-width:100%}
+.wi h2 em{font-style:normal;color:var(--gold)}
+
+/* right column: paragraph + the 13 ticker, with a gold hairline on the left */
+.wi__aside{padding-left:0;padding-bottom:0}
+
+.wi__aside p{font-size:clamp(.92rem,1.05vw,1rem);line-height:1.65;
+  color:var(--navy-text);max-width:38ch;margin:0}
+
+/* ---- big 13 block, sits under the intro row ---- */
+.wi__stat{
+  display:flex;align-items:center;gap:clamp(20px,2.4vw,34px);
+  margin-bottom:clamp(30px,3.6vw,48px);
+  padding-top:clamp(22px,2.6vw,32px);
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.wi__tickerNum{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(5rem,11vw,9.5rem);line-height:.68;letter-spacing:-.055em;
+  color:var(--gold);font-variant-numeric:tabular-nums;flex:none;
+  min-width:1.55ch;
+}
+.wi__statBody{display:flex;flex-direction:column;gap:12px;max-width:34ch}
+.wi__tickerTxt{font-size:clamp(.88rem,1vw,.95rem);line-height:1.55;
+  color:var(--navy-mute);max-width:28ch}
+
+/* ---------------- card grid ---------------- */
+.wi__cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,1.6vw,22px)}
+
+.card{
+  position:relative;display:flex;flex-direction:column;justify-content:flex-end;
+  min-height:clamp(230px,21vw,300px);
+  border-radius:var(--r-lg);overflow:hidden;isolation:isolate;
+  padding:clamp(18px,2vw,26px);
+  background:var(--navy-card);
+  border:1px solid rgba(255,255,255,.09);
+  text-decoration:none;color:#fff;
+  opacity:0;transform:translateY(30px);
+  transition:opacity .85s var(--ease-out),transform .85s var(--ease-out),
+             border-color .45s var(--ease-out);
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.card.is-in{opacity:1;transform:none}
+.card:hover{border-color:rgba(200,163,77,.6)}
+
+/* photo layer */
+.card__img{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.card__img img{width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.06);transition:transform 1.6s var(--ease-out);
+  filter:none}
+.card:hover .card__img img{transform:scale(1.07)}
+
+/* navy gradient so type always reads */
+/* only a short shadow at the very bottom so the title reads — the photo stays clean */
+.card__veil{position:absolute;left:0;right:0;bottom:0;height:52%;z-index:-1;
+  background:linear-gradient(180deg,transparent 0%,rgba(11,31,58,.45) 46%,
+    rgba(11,31,58,.86) 100%);
+  transition:height .5s var(--ease-out),background .5s var(--ease-out)}
+.card:hover .card__veil{height:64%;
+  background:linear-gradient(180deg,transparent 0%,rgba(11,31,58,.30) 40%,
+    rgba(11,31,58,.70) 100%)}
+
+/* gold sheen sweep on hover */
+/* hover overlay: a navy scrim rises over the photograph itself, so the whole
+   card darkens and the copy inside becomes the brightest thing on it */
+.card__sheen{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,31,58,.34) 0%,rgba(11,31,58,.62) 46%,
+    rgba(8,22,44,.90) 100%);
+  opacity:0;transition:opacity .5s var(--ease-out)}
+.card:hover .card__sheen,.card:focus-visible .card__sheen{opacity:1}
+
+/* card content */
+.card__top{position:absolute;top:clamp(16px,1.8vw,22px);left:clamp(18px,2vw,26px);
+  right:clamp(18px,2vw,26px);display:flex;align-items:flex-start;
+  justify-content:space-between;gap:12px;z-index:2}
+.card__num{font-family:var(--display);font-size:.78rem;letter-spacing:.12em;
+  color:var(--gold);font-variant-numeric:tabular-nums;
+  background:rgba(11,31,58,.62);backdrop-filter:blur(6px);
+  border:1px solid rgba(200,163,77,.45);border-radius:var(--r-chip);
+  padding:5px 11px;line-height:1}
+.card__ico{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);
+  color:#fff;flex:none;opacity:0;transform:translate(-6px,6px) scale(.9);
+  transition:opacity .45s var(--ease-out),transform .5s var(--ease-out),
+             background .4s var(--ease-out),color .4s var(--ease-out)}
+.card:hover .card__ico{opacity:1;transform:none;background:var(--gold);color:var(--gold-ink);
+  border-color:transparent}
+.card__ico svg{width:13px;height:13px}
+
+.card h3{position:relative;z-index:2;font-family:var(--display);font-weight:400;
+  font-size:clamp(1.02rem,1.4vw,1.24rem);line-height:1.22;letter-spacing:-.02em;
+  color:#fff;margin:0;display:inline-block;
+  background-image:linear-gradient(var(--gold),var(--gold));
+  background-repeat:no-repeat;background-position:0 100%;background-size:0% 1.5px;
+  transition:transform .5s var(--ease-out),background-size .5s var(--ease-out)}
+.card:hover h3{background-size:100% 1.5px}
+.card:hover h3{transform:translateY(-3px)}
+
+/* description: hidden by default, slides up on hover / tap */
+.card p{position:relative;z-index:2;
+  font-size:clamp(.78rem,.88vw,.845rem);line-height:1.62;color:rgba(255,255,255,.86);
+  margin:0;max-width:44ch;
+  max-height:0;opacity:0;overflow:hidden;
+  transform:translateY(8px);
+  transition:max-height .55s var(--ease-io),opacity .4s var(--ease-out) .06s,
+             transform .5s var(--ease-out) .06s,margin .5s var(--ease-out)}
+.card:hover p,.card:focus-visible p,.card[data-open="true"] p{
+  max-height:220px;opacity:1;transform:none;margin-top:10px}
+
+/* feature card spans 2 columns and is taller */
+.card--feature{grid-column:span 2;min-height:clamp(230px,21vw,300px)}
+.card--feature h3{font-size:clamp(1.15rem,1.85vw,1.6rem);max-width:24ch}
+.card--feature p{font-size:clamp(.84rem,.95vw,.92rem);max-width:54ch}
+/* gold ring accent on the feature card */
+.card--feature::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  border:1px solid rgba(200,163,77,.55);pointer-events:none;z-index:3;
+  clip-path:inset(0 0 100% 0);transition:clip-path 1.2s var(--ease-io) .45s}
+.card--feature.is-in::after{clip-path:inset(0 0 0 0)}
+
+/* the very last card sits beside the feature block visually */
+.card--wide{grid-column:span 1}
+
+/* ---------------- bottom CTA ---------------- */
+.wi__foot{margin-top:clamp(30px,4vw,54px);padding-top:clamp(24px,3vw,36px);
+  border-top:1px solid rgba(255,255,255,.13);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:18px 30px}
+.wi__footTxt{font-size:clamp(.92rem,1.05vw,1rem);line-height:1.55;
+  color:var(--navy-text);max-width:44ch;margin:0}
+.wi__footCta{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ---------------- responsive ---------------- */
+@media(max-width:1024px){
+  .wi{padding-block:40px}
+  .wi__head{grid-template-columns:1fr;gap:20px}
+  .wi h2{max-width:100%}
+  .wi__aside{padding-left:0;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
+  .wi__aside p{max-width:none}
+  .wi__aside p{max-width:none}
+  .wi__stat{flex-direction:row;gap:16px}
+  .wi__tickerNum{font-size:clamp(3.6rem,14vw,5.6rem)}
+  .wi__statBody{gap:9px}
+  .wi__foot{flex-direction:column;align-items:flex-start}
+  .wi__cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .card--feature{grid-column:span 2}
+  .wi__ghost{font-size:clamp(6rem,22vw,11rem);opacity:.55}
+  .card p{-webkit-line-clamp:3}
+}
+@media(max-width:680px){
+  .wi__cards{grid-template-columns:1fr;gap:12px}
+  .card--feature{grid-column:span 1}
+  .card{min-height:190px;padding:16px}
+  .card p{-webkit-line-clamp:2}
+}
+@media(max-width:560px){
+  .wi{padding-block:30px}
+  .card{min-height:172px;border-radius:var(--r-md)}
+  .card h3{font-size:1rem}
+  .card p{font-size:.78rem}
+}
+
+/* ---------------- reveals ---------------- */
+.wi .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.wi .ln > span{display:block;transform:translateY(110%);
+  transition:transform 1.15s var(--ease-out)}
+.wi .ln.is-in > span{transform:none}
+
+.wi .rv{opacity:0;transform:translateY(24px);
+  transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.wi .rv.is-in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  .wi .ln > span{transform:none!important;transition:none!important}
+  .wi .rv{opacity:1!important;transform:none!important;transition:none!important}
+  .card{opacity:1!important;transform:none!important;transition:none!important}
+  .card__img img{transform:none!important;transition:none!important}
+  .card p{max-height:none!important;opacity:1!important;transform:none!important;margin-top:10px!important}
+  .card__ico{opacity:1!important;transform:none!important}
+  .card--feature::after{clip-path:inset(0)!important;transition:none!important}
+  .wi__ghost{opacity:1!important;transform:none!important;transition:none!important}
+  .wi__spot{display:none}
+  .card h3{background-size:0% 1.5px!important}
+  .card__sheen{display:none}
+}
+
+
+/* Compact homepage teaser; the full 13 reasons now live in the article */
+.wi--teaser {
+  padding-block: clamp(48px, 6vw, 76px);
+}
+.wi--teaser .wi__meta {
+  margin-bottom: 18px;
+}
+.wi--teaser .wi__teaserInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+.wi--teaser .wi__teaserCopy {
+  max-width: 760px;
+}
+.wi--teaser h2 {
+  max-width: 24ch;
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  line-height: 1.12;
+}
+.wi--teaser .wi__teaserCopy p {
+  margin: 16px 0 0;
+  max-width: 65ch;
+  color: var(--navy-text);
+  font-size: clamp(16px, 1.1vw, 18px);
+  line-height: 1.7;
+}
+.wi--teaser .wi__teaserCta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+@media(max-width:760px) {
+  .wi--teaser .wi__teaserInner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .wi--teaser .wi__teaserCta {
+    white-space: normal;
+  }
+}
+
+/* Mobile homepage section spacing */
+@media (max-width: 767px) { .wi { padding-top: 36px !important; padding-bottom: 36px !important; } }

@@ -1,0 +1,103 @@
+/* Section 08: Testimonials — responsive coverflow / single-card mobile layout */
+.ts{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:100px 0;background:var(--navy);color:#fff;
+}
+.ts__bloomA,.ts__bloomB{position:absolute;z-index:0;pointer-events:none;border-radius:50%;filter:blur(80px)}
+.ts__bloomA{width:46vw;height:46vw;left:50%;top:-14vw;transform:translateX(-50%);background:radial-gradient(circle,rgba(200,163,77,.16),transparent 68%)}
+.ts__bloomB{width:56vw;height:40vw;left:50%;bottom:-20vw;transform:translateX(-50%);background:radial-gradient(circle,rgba(52,92,148,.34),transparent 70%)}
+.ts__wrap{position:relative;z-index:1;width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter);box-sizing:border-box}
+.ts__head{text-align:center;max-width:780px;margin:0 auto clamp(38px,4.4vw,60px)}
+.ts h2{font-size:clamp(1.8rem,3.5vw,3.35rem);line-height:1.06;letter-spacing:-.028em;color:#fff;margin:0 0 16px}
+.ts h2 em{font-style:normal;color:var(--gold)}
+.ts__lede{font-size:clamp(.9rem,1.05vw,1rem);line-height:1.66;color:var(--navy-text);max-width:62ch;margin:0 auto}
+.ts__stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:clamp(380px,40vw,470px)}
+.ts__track{position:relative;width:100%;height:420px;perspective:1600px;perspective-origin:50% 50%;transform-style:preserve-3d}
+.tcard{
+  position:absolute;top:0;left:50%;width:clamp(500px,46vw,620px);height:auto;
+  margin-left:calc(clamp(500px,46vw,620px)/-2);box-sizing:border-box;
+  padding:30px 32px;display:flex;flex-direction:column;gap:16px;
+  border:1px solid rgba(255,255,255,.10);border-radius:var(--r-lg);
+  background:linear-gradient(168deg,color-mix(in srgb,var(--navy),white 6%) 0%,var(--navy) 60%,color-mix(in srgb,var(--navy),black 8%) 100%);
+  transform-origin:50% 50%;will-change:transform,opacity,filter;
+  transition:transform .75s var(--ease-io),opacity .55s var(--ease-out),filter .55s var(--ease-out),border-color .45s var(--ease-out),box-shadow .45s var(--ease-out);
+  cursor:pointer;
+}
+.tcard[data-pos="0"]{z-index:5;opacity:1;filter:none;transform:translate3d(0,0,0) rotateY(0) scale(1);border-color:rgba(200,163,77,.55);box-shadow:0 30px 70px -30px rgba(0,0,0,.8),0 0 0 1px rgba(200,163,77,.16),inset 0 1px 0 rgba(255,255,255,.06)}
+.tcard[data-pos="-1"]{z-index:4;opacity:.62;filter:blur(.4px) brightness(.75);transform:translate3d(calc(clamp(500px,46vw,620px)*-.88),0,0) rotateY(12deg) scale(1)}
+.tcard[data-pos="1"]{z-index:4;opacity:.62;filter:blur(.4px) brightness(.75);transform:translate3d(calc(clamp(500px,46vw,620px)*.88),0,0) rotateY(-12deg) scale(1)}
+.tcard[data-pos="-2"]{z-index:3;opacity:.28;filter:blur(1.4px) brightness(.6);transform:translate3d(calc(clamp(500px,46vw,620px)*-1.5),0,-300px) rotateY(20deg) scale(1)}
+.tcard[data-pos="2"]{z-index:3;opacity:.28;filter:blur(1.4px) brightness(.6);transform:translate3d(calc(clamp(500px,46vw,620px)*1.5),0,-300px) rotateY(-20deg) scale(1)}
+.tcard[data-pos="far"]{z-index:1;opacity:0;pointer-events:none;transform:translate3d(0,0,-420px) scale(.7)}
+.tcard__top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none}
+.tcard__stars{display:flex;gap:3px;color:var(--gold)}
+.tcard__stars svg{width:14px;height:14px}
+.tcard__no{font-family:var(--display);font-size:.72rem;letter-spacing:.14em;color:var(--gold);font-variant-numeric:tabular-nums}
+.tcard blockquote,.tcard__quote{margin:0;color:#fff;font-family:var(--body);font-size:15px;font-weight:400;line-height:1.55;letter-spacing:0;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
+.tcard__quote.is-expanded{display:block;-webkit-line-clamp:unset;overflow:visible}
+.tcard__foot{display:flex;align-items:center;gap:12px;padding-top:14px;margin-top:auto;border-top:1px solid rgba(255,255,255,.12);flex:none}
+.tcard__av{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:var(--display);font-size:.9rem;color:var(--gold);border:1px solid rgba(200,163,77,.4);background:rgba(200,163,77,.08)}
+img.tcard__av{object-fit:cover;border:0!important;display:block}
+.tcard[data-pos="0"] .tcard__av{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.tcard__nm{font-size:14px;font-weight:600;color:#fff;line-height:1.35}
+.tcard__rl{font-size:12px;line-height:1.4;color:var(--gold);margin-top:3px}
+.tcard__readmore{display:inline-flex;align-self:flex-start;position:relative;z-index:8;align-items:center;justify-content:center;min-height:36px;padding:7px 16px;border:1px solid rgba(200,163,77,.65);border-radius:999px;background:rgba(200,163,77,.10);color:var(--gold);font:600 12px/1.2 var(--body,Arial,sans-serif);cursor:pointer}
+.tcard__readmore[hidden]{display:none!important}
+.ts__arrow{position:absolute;z-index:10;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(11,31,58,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.22);color:#fff;cursor:pointer;transition:background .3s,border-color .3s,color .3s,transform .3s}
+.ts__arrow:hover{background:var(--gold);border-color:var(--gold);color:var(--navy);transform:translateY(-50%) scale(1.06)}
+.ts__arrow svg{width:17px;height:17px}
+.ts__arrow--prev{left:0}.ts__arrow--next{right:0}
+.ts__dots{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:clamp(24px,2.8vw,36px)}
+.ts__dot{width:9px;height:9px;padding:0;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.32);background:transparent;transition:width .3s,background .3s,border-color .3s}
+.ts__dot[aria-current="true"]{width:26px;border-radius:5px;background:var(--gold);border-color:var(--gold)}
+.ts__note{text-align:center;font-size:.72rem;line-height:1.6;color:rgba(255,255,255,.42);margin:22px auto 0;max-width:70ch}
+.ts .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ts .ln>span{display:block;transform:translateY(110%);transition:transform 1.15s var(--ease-out)}
+.ts .ln.is-in>span{transform:none}
+.ts .rv{opacity:0;transform:translateY(20px);transition:opacity .85s var(--ease-out),transform .85s var(--ease-out)}
+.ts .rv.is-in{opacity:1;transform:none}
+
+/* Tablet and mobile: one active card in normal flow, no fixed card/track heights */
+@media(max-width:1024px){
+  .ts{padding-block:64px}
+  .ts__stage{display:block;min-height:0;padding-bottom:62px}
+  .ts__track{display:grid;grid-template-columns:minmax(0,1fr);height:auto;min-height:0;perspective:none;transform:none}
+  .ts .tcard{grid-area:1/1;position:absolute;top:0;left:0;width:100%;max-width:100%;height:auto;min-height:0;margin:0;padding:26px 24px;gap:14px;transform:none!important;box-sizing:border-box}
+  .ts .tcard[data-pos="0"]{position:relative;z-index:5;opacity:1;filter:none;pointer-events:auto;box-shadow:0 20px 44px -26px rgba(0,0,0,.7)}
+  .ts .tcard:not([data-pos="0"]){z-index:0;opacity:0;filter:none;pointer-events:none}
+  .ts__arrow{top:auto;bottom:0;transform:none;width:48px;height:48px}
+  .ts__arrow:hover{transform:scale(1.05)}
+  .ts__arrow--prev{left:calc(50% - 56px);right:auto}
+  .ts__arrow--next{left:calc(50% + 8px);right:auto}
+  .ts__note{margin-top:18px}
+}
+@media(max-width:768px){
+  .ts{padding-block:44px}
+  .ts__head{margin-bottom:30px;padding-inline:2px}
+  .ts__lede{font-size:15px;line-height:1.55}
+  .ts .tcard{padding:22px 20px;gap:13px;border-radius:var(--r-md)}
+  .ts .tcard__quote{font-size:15px;line-height:1.5}
+  .ts .tcard__foot{padding-top:12px;gap:10px}
+  .ts .tcard__nm{font-size:13px}
+  .ts .tcard__readmore{min-height:36px}
+  .ts__stage{padding-bottom:60px}
+  .ts__dots{margin-top:22px}
+  .ts__note{font-size:11px;padding-inline:8px}
+}
+@media(max-width:420px){
+  .ts{padding-block:36px}
+  .ts__wrap{padding-inline:16px}
+  .ts .tcard{padding:20px 16px}
+  .ts .tcard__quote{font-size:14px;line-height:1.5}
+  .ts__arrow{width:44px;height:44px}
+  .ts__arrow--prev{left:calc(50% - 52px)}
+  .ts__arrow--next{left:calc(50% + 8px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .ts .ln>span{transform:none!important;transition:none!important}
+  .ts .rv{opacity:1!important;transform:none!important;transition:none!important}
+  .tcard,.ts__arrow{transition:none!important}
+}
+
+/* Mobile homepage section spacing */
+@media (max-width: 767px) { .ts { padding-top: 36px !important; padding-bottom: 36px !important; } }

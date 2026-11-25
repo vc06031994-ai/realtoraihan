@@ -1,0 +1,852 @@
+/* 04-services */
+
+/* ==================== SECTION 04 · SERVICES ====================
+   Cinematic section: a Dubai skyline photograph sits behind the whole band,
+   washed back so the cards stay legible. Cards are glass panels — one gold
+   headline per card, description underneath, nothing else competing.
+   Content: client PDF — 8 services, verbatim.
+   ============================================================= */
+
+.sv {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--navy);
+  padding-block: 100px;
+  background: #EDEAE1;
+}
+
+/* ---------- background photograph ---------- */
+.sv__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden
+}
+
+.sv__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  display: block;
+  transform: scale(1.04);
+  will-change: transform
+}
+
+/* soft cream wash: keeps the photo present but well behind the cards */
+.sv__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(246, 245, 240, .90) 0%, rgba(246, 245, 240, .80) 34%,
+      rgba(246, 245, 240, .74) 62%, rgba(246, 245, 240, .90) 100%),
+    radial-gradient(90% 60% at 50% 0%, rgba(246, 245, 240, .6), transparent 70%)
+}
+
+.sv__wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  position: relative;
+  z-index: 1
+}
+
+/* ---------------- head ---------------- */
+.sv__meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(18px, 2.2vw, 26px)
+}
+
+.sv__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, .9fr);
+  gap: clamp(30px, 4.6vw, 72px);
+  align-items: start;
+  margin-bottom: clamp(34px, 4vw, 54px)
+}
+
+.sv h2 {
+  font-size: clamp(1.8rem, 3.5vw, 3.35rem);
+  line-height: 1.06;
+  letter-spacing: -.028em;
+  color: var(--navy);
+  margin: 0
+}
+
+.sv h2 em {
+  font-style: normal;
+  color: var(--gold)
+}
+
+.sv__aside {
+  padding-top: 6px
+}
+
+.sv__aside p {
+  font-size: clamp(.92rem, 1.05vw, 1rem);
+  line-height: 1.66;
+  color: var(--ink-body);
+  max-width: 40ch;
+  margin: 0
+}
+
+/* ---------------- bento grid ---------------- */
+.sv__bento {
+  display: grid;
+  gap: clamp(10px, 1vw, 14px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(clamp(178px, 13.5vw, 208px), auto);
+}
+
+.bento {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(255, 255, 255, .86);
+  -webkit-backdrop-filter: blur(9px) saturate(1.05);
+  backdrop-filter: blur(9px) saturate(1.05);
+  border: 1px solid rgba(227, 224, 215, .9);
+  border-radius: var(--r-lg);
+  padding: clamp(18px, 1.7vw, 26px);
+  display: flex;
+  flex-direction: column;
+  color: var(--navy);
+  text-decoration: none;
+  transition: transform .55s var(--ease-out), box-shadow .55s var(--ease-out),
+    border-color .45s var(--ease-out), background .45s var(--ease-out);
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+.bento.is-in {
+  opacity: 1;
+  transform: none
+}
+
+.bento--feat {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: rgba(11, 31, 58, .94);
+  border-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none
+}
+
+.bento--wide,
+.sv__bento>.bento:last-child:nth-child(8) {
+  grid-column: span 2
+}
+
+.bento--wide .bento__body,
+.sv__bento>.bento:last-child:nth-child(8) .bento__body {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: clamp(12px, 1.2vw, 16px);
+  align-items: start
+}
+
+.bento--wide .bento__ico,
+.sv__bento>.bento:last-child:nth-child(8) .bento__ico {
+  grid-column: 1;
+  grid-row: 1
+}
+
+.bento--wide .bento__body>h3,
+.sv__bento>.bento:last-child:nth-child(8) .bento__body>h3 {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0
+}
+
+.bento--wide .bento__body>p,
+.sv__bento>.bento:last-child:nth-child(8) .bento__body>p {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin-top: clamp(10px, 1.1vw, 14px);
+  max-width: 58ch
+}
+
+/* gold hairline that draws along the top edge on hover */
+.bento::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 3;
+  background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .65s var(--ease-out);
+}
+
+@media(hover:hover) {
+  .bento:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 26px 48px -32px rgba(11, 31, 58, .5);
+    border-color: rgba(200, 163, 77, .55);
+    background: rgba(255, 255, 255, .96)
+  }
+
+  .bento--feat:hover {
+    background: rgba(11, 31, 58, .97)
+  }
+
+  .bento:hover::before {
+    transform: scaleX(1)
+  }
+
+  .bento:hover h3 {
+    letter-spacing: -.012em
+  }
+}
+
+.bento:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px
+}
+
+/* soft gold bloom in the feature card */
+.bento--feat::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 60%;
+  aspect-ratio: 1;
+  right: -14%;
+  top: -24%;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(200, 163, 77, .28), transparent 68%);
+  filter: blur(28px);
+}
+
+/* ---------------- card internals ---------------- */
+.bento__ico {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: clamp(40px, 3.2vw, 48px);
+  height: clamp(40px, 3.2vw, 48px);
+  border-radius: 13px;
+  color: var(--gold-lt);
+  background: rgba(9, 25, 48, .55);
+  border: 1px solid rgba(200, 163, 77, .55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 16px -10px rgba(0, 0, 0, .8);
+  transition: background .42s var(--ease-out), color .42s var(--ease-out),
+    border-color .42s var(--ease-out), transform .5s var(--ease-out),
+    box-shadow .42s var(--ease-out)
+}
+
+.bento__ico svg {
+  width: 20px;
+  height: 20px
+}
+
+.bento:hover .bento__ico,
+.bento:focus-visible .bento__ico {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+  transform: translateY(-2px) rotate(-4deg);
+  box-shadow: 0 12px 24px -12px rgba(200, 163, 77, .75)
+}
+
+.bento__body {
+  margin-top: 0;
+  position: relative;
+  z-index: 2
+}
+
+.bento--feat .bento__body {
+  margin-top: auto
+}
+
+/* icon owns the left edge; heading and copy sit on one shared text axis */
+.bento__body {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: clamp(11px, 1.15vw, 15px);
+  align-items: start
+}
+
+.bento__body>h3 {
+  grid-column: 2
+}
+
+.bento__body>p {
+  grid-column: 2
+}
+
+.bento__ico {
+  grid-column: 1;
+  grid-row: 1 / span 2
+}
+
+.bento--feat .bento__body {
+  display: block
+}
+
+.bento h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(1.16rem, 1.5vw, 1.44rem);
+  line-height: 1.18;
+  letter-spacing: -.024em;
+  transition: letter-spacing .5s var(--ease-out)
+}
+
+.bento--feat h3 {
+  font-size: clamp(1.7rem, 2.9vw, 2.6rem);
+  line-height: 1.08;
+  max-width: 15ch
+}
+
+.bento p {
+  font-size: clamp(.78rem, .86vw, .84rem);
+  line-height: 1.62;
+  color: var(--ink-body);
+  margin: 10px 0 0;
+  max-width: 44ch
+}
+
+.bento--feat p {
+  color: rgba(255, 255, 255, .76);
+  font-size: clamp(.84rem, .95vw, .94rem);
+  max-width: 38ch;
+  margin-top: 14px
+}
+
+/* ghost numeral, bottom-right — sits fully inside the card, line-height 1 so
+   neither the cap nor the baseline gets clipped by overflow:hidden */
+.bento__ghost {
+  position: absolute;
+  z-index: 0;
+  right: clamp(13px, 1.5vw, 20px);
+  bottom: clamp(9px, 1.1vw, 15px);
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.05em;
+  font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+  /* a warm ink tint rather than navy — on the glass cards a blue-grey ghost
+     reads as a muddy smudge, a warm one reads as embossed paper */
+  color: rgba(96, 84, 58, .13);
+  pointer-events: none;
+  user-select: none;
+  transition: color .6s var(--ease-out), transform .7s var(--ease-out)
+}
+
+.bento--feat .bento__ghost {
+  font-size: clamp(3.4rem, 5vw, 5rem);
+  color: rgba(255, 255, 255, .07);
+  right: clamp(16px, 1.8vw, 26px);
+  bottom: clamp(12px, 1.4vw, 20px)
+}
+
+@media(hover:hover) {
+  .bento:hover .bento__ghost {
+    color: rgba(200, 163, 77, .30);
+    transform: translateY(-4px)
+  }
+
+  .bento--feat:hover .bento__ghost {
+    color: rgba(200, 163, 77, .18)
+  }
+
+  /* on the photo card the icon sits on top of an image, so it gets a firmer plate */
+  .bento--feat .bento__ico {
+    background: rgba(8, 22, 44, .72);
+    color: var(--gold);
+    border-color: rgba(200, 163, 77, .75);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .9)
+  }
+
+  .bento--feat .bento__ico svg {
+    width: 22px;
+    height: 22px
+  }
+
+  .bento--feat:hover .bento__ico {
+    background: var(--gold);
+    color: var(--navy)
+  }
+}
+
+/* decorative skyline line-art, feature card only */
+.bento--feat {
+  overflow: hidden;
+  min-height: clamp(330px, 34vw, 460px)
+}
+
+/* the photo layer is pinned to the card's own corners; the generic .bento__art
+   rule further down (bottom-aligned, 60% tall) must not clip it */
+.bento--feat>.bento__art--photo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  opacity: 1;
+  mask-image: none;
+  -webkit-mask-image: none
+}
+
+.bento__art--photo img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  min-height: 100%;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 1.4s var(--ease-out), filter .8s var(--ease-out);
+  filter: saturate(.92) contrast(1.02)
+}
+
+.bento--feat:hover .bento__art--photo img {
+  transform: scale(1.07);
+  filter: saturate(1.02)
+}
+
+/* the photo stays visible edge to edge; only a soft bottom wash sits behind the
+   text so the copy keeps its contrast */
+.bento__artVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(9, 25, 48, .94) 0%, rgba(9, 25, 48, .78) 26%,
+      rgba(9, 25, 48, .34) 52%, rgba(9, 25, 48, 0) 74%),
+    linear-gradient(to right, rgba(9, 25, 48, .52) 0%, rgba(9, 25, 48, .12) 46%, transparent 72%),
+    linear-gradient(180deg, rgba(9, 25, 48, .22) 0%, transparent 22%)
+}
+
+.bento__art:not(.bento__art--photo) {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 60%;
+  pointer-events: none;
+  opacity: .85;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, .95) 0%, rgba(0, 0, 0, .7) 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, .95) 0%, rgba(0, 0, 0, .7) 55%, transparent 100%)
+}
+
+.bento__art svg {
+  width: 100%;
+  height: 100%;
+  display: block
+}
+
+.bento__art path {
+  stroke: rgba(200, 163, 77, .28);
+  stroke-width: 1;
+  fill: none
+}
+
+.bento__art .fill {
+  fill: rgba(200, 163, 77, .07);
+  stroke: none
+}
+
+.bento__art .hl {
+  stroke: rgba(200, 163, 77, .46)
+}
+
+/* ---------------- responsive ---------------- */
+@media(max-width:1024px) {
+  .sv {
+    padding-block: 40px
+  }
+
+  .sv__head {
+    grid-template-columns: 1fr;
+    gap: 20px
+  }
+
+  .sv__aside {
+    padding-top: 18px;
+    border-top: 1px solid var(--hairline)
+  }
+
+  .sv__aside p {
+    max-width: none
+  }
+
+  .sv__bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto
+  }
+
+  .bento--feat {
+    grid-column: span 2;
+    grid-row: auto;
+    min-height: 380px
+  }
+
+  .bento--feat h3 {
+    max-width: 22ch
+  }
+
+  .bento--wide,
+  .sv__bento>.bento:last-child:nth-child(8) {
+    grid-column: span 2
+  }
+
+  .sv__bg::after {
+    background:
+      linear-gradient(180deg, rgba(246, 245, 240, .92) 0%, rgba(246, 245, 240, .84) 40%,
+        rgba(246, 245, 240, .92) 100%)
+  }
+}
+
+@media(max-width:560px) {
+  .sv {
+    padding-block: 30px
+  }
+
+  .sv__bento {
+    grid-template-columns: 1fr;
+    gap: 10px
+  }
+
+  .bento--feat,
+  .bento--wide,
+  .sv__bento>.bento:last-child:nth-child(8) {
+    grid-column: span 1
+  }
+
+  .bento {
+    padding: 20px;
+    border-radius: var(--r-md);
+    background: rgba(255, 255, 255, .92)
+  }
+
+  /* the feature card must keep its navy plate — the generic white rule
+     above would otherwise win on specificity and wash the card out */
+  .bento--feat {
+    min-height: 330px
+  }
+
+  .bento--feat h3 {
+    font-size: 1.5rem;
+    max-width: none
+  }
+
+  .bento h3 {
+    font-size: 1.14rem
+  }
+
+  .bento p {
+    max-width: none
+  }
+
+  .bento__art:not(.bento__art--photo) {
+    height: 34%;
+    opacity: .6
+  }
+
+  .bento__ghost {
+    font-size: 2.4rem;
+    right: 14px;
+    bottom: 11px
+  }
+
+  .bento--feat .bento__ghost {
+    font-size: 3.2rem
+  }
+}
+
+/* ---------------- reveals ---------------- */
+.sv .ln {
+  display: block;
+  overflow: hidden;
+  padding-bottom: .06em
+}
+
+.sv .ln>span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 1.15s var(--ease-out)
+}
+
+.sv .ln.is-in>span {
+  transform: none
+}
+
+.sv .rv {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .85s var(--ease-out), transform .85s var(--ease-out)
+}
+
+.sv .rv.is-in {
+  opacity: 1;
+  transform: none
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sv .ln>span {
+    transform: none !important;
+    transition: none !important
+  }
+
+  .sv .rv {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important
+  }
+
+  .bento {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important
+  }
+}
+
+/* Service card icon background: navy */
+.sv__bento .bento__ico {
+  background: #0b1f3a;
+}
+
+
+/* Services: reserve clear space for the decorative card numbers */
+.sv__bento > .bento:not(.bento--feat) {
+  padding-bottom: 64px;
+}
+.sv__bento > .bento:not(.bento--feat) .bento__body {
+  padding-bottom: 4px;
+}
+.sv__bento > .bento:not(.bento--feat) .bento__ghost {
+  right: 18px;
+  bottom: 12px;
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  color: rgba(96, 84, 58, .09);
+}
+.sv__bento > .bento--wide:not(.bento--feat) {
+  min-height: 220px;
+}
+@media (max-width: 1024px) {
+  .sv__bento > .bento:not(.bento--feat) {
+    padding-bottom: 60px;
+  }
+}
+@media (max-width: 560px) {
+  .sv__bento > .bento:not(.bento--feat) {
+    padding-bottom: 58px;
+  }
+  .sv__bento > .bento--wide:not(.bento--feat) {
+    min-height: 0;
+  }
+}
+
+
+/* Services section paragraph and description typography */
+.sv .bento p,
+.sv .sv__aside p {
+  font-size: clamp(16px, 1.1vw, 18px) !important;
+  line-height: 1.55 !important;
+}
+@media (max-width: 767px) {
+  .sv .bento p,
+  .sv .sv__aside p {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+  }
+}
+
+
+/* Services carousel: preserve existing card design and typography */
+.sv__bento.sv__slider {
+  display: block !important;
+  grid-template-columns: none !important;
+  grid-auto-rows: auto !important;
+}
+.sv__slider-viewport {
+  width: 100%;
+  overflow: hidden;
+  padding: 5px 2px 18px;
+}
+.sv__slider-track {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(12px, 1vw, 16px);
+  transition: transform .55s var(--ease-out);
+  will-change: transform;
+}
+.sv__slider-track > .bento {
+  flex: 0 0 calc((100% - 32px) / 3);
+  width: calc((100% - 32px) / 3);
+  min-width: 0;
+  min-height: 390px;
+  height: auto;
+  opacity: 1;
+  transform: none;
+}
+.sv__slider-track > .bento--feat {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  min-height: 390px;
+}
+.sv__slider-track > .bento--wide {
+  grid-column: auto !important;
+}
+.sv__slider-track > .bento:not(.bento--feat) {
+  padding-bottom: clamp(54px, 4vw, 64px);
+}
+.sv__slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 14px;
+}
+.sv__slider-btn {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(200,163,77,.65);
+  border-radius: 50%;
+  color: var(--navy);
+  background: rgba(255,255,255,.88);
+  cursor: pointer;
+  font: inherit;
+  font-size: 20px;
+  line-height: 1;
+  transition: background .25s var(--ease-out), color .25s var(--ease-out), border-color .25s var(--ease-out);
+}
+.sv__slider-btn:hover:not(:disabled) {
+  color: var(--navy);
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.sv__slider-btn:disabled {
+  opacity: .38;
+  cursor: not-allowed;
+}
+.sv__slider-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.sv__slider-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(11,31,58,.25);
+  cursor: pointer;
+  transition: width .25s var(--ease-out), background .25s var(--ease-out);
+}
+.sv__slider-dot.is-active {
+  width: 22px;
+  border-radius: 99px;
+  background: var(--gold);
+}
+@media(max-width:1024px) {
+  .sv__slider-track > .bento {
+    flex-basis: calc((100% - 16px) / 2);
+    width: calc((100% - 16px) / 2);
+    min-height: 380px;
+  }
+  .sv__slider-track > .bento--feat { min-height: 380px; }
+}
+@media(max-width:560px) {
+  .sv__slider-track > .bento {
+    flex-basis: 100%;
+    width: 100%;
+    min-height: 340px;
+  }
+  .sv__slider-track > .bento--feat { min-height: 340px; }
+  .sv__slider-controls { margin-top: 8px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .sv__slider-track,.sv__slider-btn,.sv__slider-dot { transition: none !important; }
+}
+
+
+/* Uniform navy service cards: no featured photo or wide-card variation */
+.sv__slider-track > .bento,
+.sv__slider-track > .bento--feat,
+.sv__slider-track > .bento--wide {
+  background: #0b1f3a !important;
+  border: 1px solid rgba(200,163,77,.35) !important;
+  border-radius: var(--r-lg) !important;
+  min-height: 350px !important;
+  height: auto !important;
+  padding: clamp(22px,2vw,30px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+.sv__slider-track > .bento .bento__art--photo,
+.sv__slider-track > .bento .bento__artVeil { display:none !important; }
+.sv__slider-track > .bento .bento__body {
+  display:grid !important; grid-template-columns:auto minmax(0,1fr) !important;
+  column-gap:14px !important; align-items:start !important; margin-top:0 !important;
+}
+.sv__slider-track > .bento .bento__ico { grid-column:1 !important; grid-row:1 / span 2 !important; background:#07172c !important; color:var(--gold) !important; }
+.sv__slider-track > .bento .bento__body > h3 {
+  grid-column:2 !important; grid-row:1 !important; color:var(--gold) !important;
+  font-size:clamp(1.16rem,1.5vw,1.44rem) !important; line-height:1.18 !important; max-width:none !important;
+}
+.sv__slider-track > .bento .bento__body > p {
+  grid-column:2 !important; grid-row:2 !important; color:rgba(255,255,255,.82) !important;
+  font-size:clamp(16px,1.1vw,18px) !important; line-height:1.55 !important; margin-top:10px !important; max-width:none !important;
+}
+.sv__slider-track > .bento .bento__ghost { color:rgba(255,255,255,.12) !important; bottom:16px !important; right:18px !important; }
+@media(max-width:1024px) { .sv__slider-track > .bento { min-height:340px !important; } }
+@media(max-width:560px) { .sv__slider-track > .bento { min-height:300px !important; } }
+
+
+/* Place service card icons above their titles */
+.sv__slider-track > .bento .bento__body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+}
+.sv__slider-track > .bento .bento__ico {
+  order: 0 !important;
+  margin: 0 0 2px !important;
+  flex: 0 0 auto !important;
+}
+.sv__slider-track > .bento .bento__body > h3 {
+  order: 1 !important;
+  margin: 0 !important;
+}
+.sv__slider-track > .bento .bento__body > p {
+  order: 2 !important;
+  margin-top: 0 !important;
+}
+
+/* Services section background image removed */
+.sv__bg{display:none!important;}
+.sv{background:#EDEAE1!important;}
+
+/* Mobile homepage section spacing */
+@media (max-width: 767px) { .sv { padding-top: 36px !important; padding-bottom: 36px !important; } }

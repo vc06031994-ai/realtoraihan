@@ -1,0 +1,488 @@
+/* 02-intro */
+
+/* ============== SECTION 02 · INTRODUCTION + STATS BAR ==============
+   Content: client PDF verbatim (H2, two paragraphs, Contact Me,
+   phone, email, 4-item stats bar).
+   Motion: masked line reveals · gold rules that draw themselves ·
+           clip-path image unveil · pointer tilt + scroll parallax ·
+           count-up numerals · animated dividers · ghost numeral.
+   =================================================================== */
+
+.s2{
+  background:var(--cream);position:relative;overflow:hidden;isolation:isolate;
+  padding-block:0;   /* inner blocks own their spacing */
+}
+/* animated gold hairline along the very top */
+.s2__edge{
+  position:absolute;inset-inline:0;top:0;height:1px;z-index:2;
+  background:linear-gradient(90deg,transparent,var(--gold) 30%,rgba(200,163,77,.25) 62%,transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 1.5s var(--ease-io) .15s;
+}
+.s2.is-live .s2__edge{transform:scaleX(1)}
+
+/* oversized ghost numeral, top-right */
+/* slim top meta row — fills the space instead of leaving it blank */
+.s2__meta{display:flex;align-items:center;gap:clamp(14px,2.4vw,26px);
+  margin-bottom:clamp(20px,2.4vw,32px)}
+.s2__meta .tag{margin:0}
+
+.s2__inner{position:relative;z-index:1;
+  padding-block:100px 0;                  /* desktop top 100px */}
+
+/* ---------------- heading block ---------------- */
+.s2__head{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,1fr);
+  gap:clamp(26px,4.2vw,60px);align-items:start;margin-bottom:clamp(24px,2.8vw,38px)}
+
+.s2 h2{font-size:clamp(1.8rem,3.5vw,3.35rem);line-height:1.06;letter-spacing:-.028em;
+  color:var(--navy);margin:0;max-width:none}
+.s2 h2 em{font-style:normal;color:var(--gold);position:relative;display:inline-block}
+/* no underline — keeps the block calm */
+
+/* tag with rotating diamond */
+.s2 .tag::before{transition:transform .9s var(--ease-out),opacity .6s}
+.s2 .tag{opacity:0;transform:translateY(10px);
+  transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.s2 .tag::before{transform:rotate(45deg) scale(0)}
+.s2.is-live .tag{opacity:1;transform:none}
+.s2.is-live .tag::before{transform:rotate(225deg) scale(1)}
+
+.s2__aside{padding-top:6px}
+
+.s2__aside p{font-size:clamp(.95rem,1.1vw,1.08rem);line-height:1.66;color:var(--ink-body);max-width:40ch}
+
+/* ---------------- copy + media ---------------- */
+.s2__body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
+  gap:clamp(30px,4.4vw,72px);align-items:start}
+
+.s2__copy p{font-size:var(--fs-body);line-height:1.8;color:var(--ink-body);max-width:50ch}
+.s2__copy p + p{margin-top:1.15em}
+.s2__copy strong{color:var(--navy);font-weight:600}
+
+/* pull quote: gold bar grows, then text lifts */
+.s2__pull{
+  margin:clamp(30px,3.8vw,46px) 0 0;padding-left:26px;position:relative;
+  font-family:var(--display);font-size:clamp(1.08rem,1.75vw,1.38rem);
+  line-height:1.46;letter-spacing:-.018em;color:var(--navy);max-width:34ch;
+  opacity:0;transform:translateY(18px);
+  transition:opacity .9s var(--ease-out) .3s,transform .9s var(--ease-out) .3s;
+}
+.s2__pull::before{
+  content:"";position:absolute;left:0;top:2px;bottom:2px;width:2px;background:var(--gold);
+  transform:scaleY(0);transform-origin:top;
+  transition:transform .9s var(--ease-out) .1s;
+}
+.s2__pull.is-in{opacity:1;transform:none}
+.s2__pull.is-in::before{transform:scaleY(1)}
+
+.s2__cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 26px;
+  margin-top:clamp(30px,3.8vw,44px)}
+
+/* ---------------- media ---------------- */
+.s2__media{position:relative;margin:0;
+  padding-right:clamp(0px,1.3vw,16px);padding-bottom:clamp(0px,1.9vw,24px)}
+
+/* gold offset frame — draws itself from the corner */
+
+/* image unveil */
+.s2__shot{position:relative;z-index:1;border-radius:var(--r-lg);overflow:hidden;
+  aspect-ratio:1200/1020;background:var(--cream-2);
+  box-shadow:0 30px 66px -32px rgba(11,31,58,.46);
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path 1.35s var(--ease-io) .1s;
+}
+.s2__media.is-in .s2__shot{clip-path:inset(0 0 0 0)}
+
+/* tilt + parallax layer */
+.s2__tilt{width:100%;height:100%;will-change:transform;
+  transform:translate3d(0,var(--py,0px),0) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .5s var(--ease-out)}
+.s2__tilt img{width:100%;height:100%;object-fit:cover;object-position:center 42%;
+  display:block;transition:transform .9s var(--ease-out)}
+.s2__media:hover .s2__tilt img{transform:scale(1.04)}
+
+/* soft gold sheen sweeping across on reveal */
+.s2__sheen{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.42) 50%,transparent 62%);
+  transform:translateX(-130%);
+}
+.s2__media.is-in .s2__sheen{animation:sheen 1.5s var(--ease-io) .85s forwards}
+@keyframes sheen{to{transform:translateX(130%)}}
+
+/* floating credential badge */
+.s2__cap{position:absolute;left:clamp(12px,1.4vw,18px);bottom:clamp(12px,1.6vw,20px);
+  z-index:3;display:flex;flex-direction:column;gap:1px;
+  padding:9px 14px 10px;border-radius:12px;
+  background:rgba(9,22,42,.86);border:1px solid rgba(200,163,77,.34);
+  -webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);
+  box-shadow:0 12px 26px -16px rgba(0,0,0,.7);
+  opacity:0;transform:translateY(8px);
+  transition:opacity .7s var(--ease-out) 1.15s,transform .7s var(--ease-out) 1.15s}
+.s2__media.is-in .s2__cap{opacity:1;transform:none}
+.s2__cap b{font-family:var(--display);font-weight:500;font-size:.92rem;
+  letter-spacing:-.012em;color:#fff;line-height:1.15}
+.s2__cap span{font-size:.63rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold-lt)}
+
+.s2__badge{
+  position:absolute;z-index:3;right:clamp(-4px,-.5vw,0px);top:clamp(14px,2vw,26px);
+  background:var(--navy);color:#fff;border-radius:var(--r-md);
+  padding:14px 19px;display:flex;align-items:center;gap:13px;
+  box-shadow:0 22px 48px -18px rgba(11,31,58,.66);
+  border:1px solid rgba(200,163,77,.34);
+  opacity:0;transform:translateY(16px) scale(.96);
+  transition:opacity .8s var(--ease-out) 1s,transform .8s var(--ease-out) 1s;
+}
+.s2__media.is-in .s2__badge{opacity:1;transform:none;animation:floaty 5.5s ease-in-out 1.9s infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.s2__badge strong{font-family:var(--display);font-size:1.65rem;line-height:.9;
+  letter-spacing:-.03em;color:var(--gold)}
+.s2__badge span{font-size:.71rem;line-height:1.3;color:var(--navy-text);
+  max-width:12ch;letter-spacing:.02em}
+
+/* ---------------- stats bar ---------------- */
+.s2__stats{position:relative;background:var(--cream);z-index:1;margin-bottom:100px}
+/* stats sits inside the 100px bottom padding of the section */
+.s2__stats > .sec__wrap{padding-block:clamp(48px,5vw,72px)}
+
+.s2__statsGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(24px,3.2vw,56px)}
+
+.stat2{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(12px,1.4vw,18px);
+  padding-inline:clamp(10px,1.2vw,16px);position:relative}
+.stat2:first-child{padding-left:0}
+.stat2:last-child{padding-right:0}
+/* no dividers — clear space does the separating */
+
+.stat2__num{font-family:var(--display);font-weight:400;letter-spacing:-.04em;line-height:1;
+  font-size:clamp(2.8rem,4.5vw,4.4rem);color:var(--navy);flex:none;
+  font-variant-numeric:tabular-nums}
+.stat2__num small{font-size:.46em;color:var(--gold);letter-spacing:-.01em;
+  vertical-align:.28em;margin-left:.03em}
+
+.stat2__label{display:block;min-width:0;padding-top:0;width:100%}
+.stat2__label b{display:block;font-size:clamp(.82rem,.94vw,.9rem);font-weight:600;
+  letter-spacing:-.01em;color:var(--navy);margin-bottom:8px;line-height:1.35;
+  white-space:normal}
+.stat2__label span{display:block;font-size:clamp(.76rem,.84vw,.82rem);line-height:1.6;
+  color:var(--ink-body);max-width:28ch}
+
+/* hover: numeral warms to gold, label lifts */
+.stat2{transition:transform .45s var(--ease-out)}
+.stat2:hover{transform:translateY(-3px)}
+.stat2__num{transition:color .45s var(--ease-out)}
+.stat2:hover .stat2__num{color:#8A6D28}
+
+/* ---------------- reveal utilities ---------------- */
+.s2 .rv{opacity:0;transform:translateY(26px);
+  transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
+.s2 .rv.is-in{opacity:1;transform:none}
+
+.s2 .ln > span{transform:translateY(112%);
+  transition:transform 1.15s var(--ease-out)}
+.s2 .ln.is-in > span{transform:none}
+
+/* ---------------- responsive ---------------- */
+@media(max-width:1024px){
+  .s2__inner{padding-block:40px 0}
+  .s2__stats{margin-bottom:40px}
+}
+@media(max-width:1024px){
+  .s2__head{grid-template-columns:1fr;gap:20px;align-items:start}
+  .s2 h2{max-width:none}
+  .s2__aside{padding-top:18px;border-top:1px solid var(--line-navy)}
+  .s2__aside p{max-width:none}
+  .s2__meta{margin-bottom:18px}
+  .s2__body{grid-template-columns:1fr;gap:34px}
+  .s2__media{order:-1}
+
+  .s2__cap{left:10px;bottom:8px;padding:7px 11px 8px;max-width:calc(100% - 20px)}
+  .s2__cap b{font-size:.82rem}
+  .s2__cap span{font-size:.55rem;letter-spacing:.08em}
+  /* the badge would land on his face on a narrow frame — pin it to the corner */
+  .s2__badge{right:10px;left:auto;top:10px;padding:9px 12px;gap:9px;
+    border-radius:11px;transform:translateY(10px) scale(.96)}
+  .s2__badge strong{font-size:1.2rem}
+  .s2__badge span{font-size:.58rem}
+  .s2__media.is-in .s2__badge{transform:none}
+  .s2__copy p{max-width:none}
+}
+@media(max-width:1040px){
+  .s2__statsGrid{grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(38px,4.4vw,50px) clamp(28px,3.4vw,44px)}
+  .stat2{padding-inline:clamp(14px,2.6vw,26px)}
+  .stat2{padding-inline:0}
+  .stat2__label span{max-width:28ch}
+  .stat2__label b{white-space:normal}
+}
+@media(max-width:560px){
+  .s2__inner{padding-block:30px 0}
+  .s2__stats{margin-bottom:30px}
+  .s2 h2 .ln > span{padding-bottom:.02em}
+  .s2__statsGrid{grid-template-columns:1fr}
+  .s2__stats > .sec__wrap{padding-block:34px}
+  .s2__statsGrid{gap:34px}
+  .stat2{padding:0 !important}
+  .stat2__num{font-size:2.5rem;min-width:2.9ch}
+  .stat2__label span{max-width:34ch}
+  .s2__badge{padding:12px 16px;gap:11px}
+  .s2__badge strong{font-size:1.4rem}
+  .s2__badge span{font-size:.67rem}
+  .s2__pull{padding-left:18px;max-width:none}
+}
+
+/* ---------------- reduced motion ---------------- */
+@media (prefers-reduced-motion: reduce){
+  .s2 .rv,.s2 .tag,.s2__pull{opacity:1!important;transform:none!important;transition:none!important}
+  .s2 .ln > span{transform:none!important;transition:none!important}
+  .s2__shot{clip-path:inset(0)!important;transition:none!important}
+  .s2__tilt{transform:none!important;transition:none!important}
+  .s2__tilt img{transform:none!important}
+  .s2__sheen{display:none}
+  .s2__badge{opacity:1!important;transform:none!important;animation:none!important}
+  .s2__edge{transform:scaleX(1)!important;transition:none!important}
+  .s2 .tag::before{transform:rotate(45deg)!important;transition:none!important}
+}
+
+
+/* Mobile: move experience badge to the right corner */
+@media(max-width:767px){
+  .s2__badge{left:auto;right:10px;top:10px}
+}
+
+/* Stats typography and responsive separators */
+.stat2__num{font-size:clamp(3.1rem,4.8vw,4.65rem)}
+.stat2__label b{font-size:clamp(.94rem,1.05vw,1.02rem);line-height:1.4}
+.stat2__label span{font-size:clamp(.88rem,.95vw,.94rem);line-height:1.65}
+@media(max-width:1040px){.s2__statsGrid{column-gap:30px;row-gap:0}.stat2{padding:24px 22px!important}.stat2:nth-child(odd){border-right:1px solid rgba(13,34,61,.18)}.stat2:nth-child(-n+2){border-bottom:1px solid rgba(13,34,61,.18)}.stat2__label b{font-size:1rem}.stat2__label span{font-size:.9rem}}
+/* Mobile stats: balanced two-column layout with clear space between cards. */
+@media(max-width:560px){
+  .s2__stats > .sec__wrap{padding:24px 18px}
+  .s2__statsGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px !important;
+    row-gap:18px !important;
+    column-gap:14px !important;
+  }
+  .s2__statsGrid .stat2{
+    min-width:0;
+    min-height:148px;
+    padding:18px 10px!important;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:9px;
+    border:1px solid rgba(13,34,61,.14)!important;
+    border-radius:12px;
+    background:rgba(255,255,255,.42);
+  }
+  .s2__statsGrid .stat2__num{
+    min-width:0;
+    font-size:2.45rem;
+  }
+  .s2__statsGrid .stat2__label{width:100%}
+  .s2__statsGrid .stat2__label b{
+    margin-bottom:5px;
+    font-size:.9rem;
+    line-height:1.3;
+  }
+  .s2__statsGrid .stat2__label span{
+    max-width:none;
+    font-size:.8rem;
+    line-height:1.45;
+  }
+}
+
+
+/* Mobile: keep a controlled, natural gap before the intro content. */
+@media (max-width: 767px) {
+  .s2__inner {
+    margin-top: 0;
+    padding-top: 28px;
+  }
+
+  .s2__meta {
+    display: flex;
+    margin-top: 0;
+    margin-bottom: 16px;
+    height: auto;
+  }
+
+  .s2__head {
+    margin-top: 0;
+  }
+}
+
+
+/* Mobile section spacing: match the site's regular section rhythm.
+   Higher specificity + !important overrides the generic .s2__inner rule
+   from custom.css without changing other sections or breakpoints. */
+@media (max-width: 767px) {
+  .s2 .s2__inner {
+    padding-top: 24px !important;
+    margin-top: 0 !important;
+  }
+
+  .s2 .s2__meta {
+    margin-bottom: 16px !important;
+  }
+}
+
+
+/* Mobile: reduce the remaining gap above the intro content by exactly 30px. */
+@media (max-width: 767px) {
+  .s2 .s2__inner {
+    margin-top: -30px !important;
+  }
+}
+
+
+/* Mobile only: tighten the gap after the stats section a little more. */
+@media (max-width: 560px) {
+  .s2__stats {
+    margin-bottom: 8px !important;
+  }
+}
+
+
+/* Final mobile stats layout override: enforce a true 2-by-2 grid
+   and visible spacing between each card, regardless of generic theme rules. */
+@media (max-width: 560px) {
+  #intro .s2__statsGrid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    row-gap: 16px !important;
+    column-gap: 16px !important;
+    align-items: stretch;
+  }
+
+  #intro .s2__statsGrid > .stat2 {
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 150px;
+    margin: 0 !important;
+    padding: 18px 10px !important;
+    border: 1px solid rgba(13, 34, 61, .16) !important;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+}
+
+
+/* Mobile stats: uniform card dimensions with a subtle zig-zag rhythm. */
+@media (max-width: 560px) {
+  #intro .s2__statsGrid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-rows: 164px;
+    gap: 16px !important;
+    align-items: stretch;
+  }
+
+  #intro .s2__statsGrid > .stat2 {
+    display: flex;
+    width: 100% !important;
+    height: 164px !important;
+    min-height: 164px !important;
+    margin: 0 !important;
+    padding: 14px 9px !important;
+    box-sizing: border-box !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid rgba(13, 34, 61, .16) !important;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .42);
+  }
+
+  #intro .s2__statsGrid > .stat2:nth-child(even) {
+    transform: translateY(10px);
+  }
+
+  #intro .s2__statsGrid .stat2__num {
+    min-width: 0;
+    font-size: 2.4rem;
+    line-height: 1.1;
+    margin-bottom: 5px;
+  }
+
+  #intro .s2__statsGrid .stat2__label {
+    width: 100%;
+  }
+
+  #intro .s2__statsGrid .stat2__label b {
+    display: block;
+    margin-bottom: 5px;
+    font-size: .88rem;
+    line-height: 1.3;
+  }
+
+  #intro .s2__statsGrid .stat2__label span {
+    display: block;
+    max-width: none;
+    font-size: .78rem;
+    line-height: 1.4;
+  }
+
+  #intro .s2__stats {
+    padding-bottom: 10px;
+  }
+}
+
+
+/* Stronger mobile zig-zag: alternate right-column cards are visibly lower.
+   Card dimensions remain identical; only their vertical position changes. */
+@media (max-width: 560px) {
+  #intro .s2__statsGrid {
+    overflow: visible !important;
+    padding-bottom: 22px !important;
+  }
+
+  #intro .s2__statsGrid > .stat2:nth-child(odd) {
+    transform: translateY(0) !important;
+  }
+
+  #intro .s2__statsGrid > .stat2:nth-child(even) {
+    transform: translateY(20px) !important;
+  }
+}
+
+
+/* Mobile stats: use one clean column; remove all zig-zag offsets. */
+@media (max-width: 560px) {
+  #intro .s2__statsGrid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-auto-rows: auto !important;
+    gap: 14px !important;
+    row-gap: 14px !important;
+    padding-bottom: 0 !important;
+  }
+
+  #intro .s2__statsGrid > .stat2,
+  #intro .s2__statsGrid > .stat2:nth-child(odd),
+  #intro .s2__statsGrid > .stat2:nth-child(even) {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 145px !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+}
+
+
+/* Desktop only: tighten the space below intro stats. */
+@media (min-width: 1025px) {
+  .s2__stats {
+    margin-bottom: 20px !important;
+  }
+}
+
+/* Mobile homepage section spacing */
+.s2 { padding-top: 36px !important; padding-bottom: 36px !important; }
+@media (max-width: 767px) {
+  #intro .s2__inner { padding-top: 28px !important; padding-bottom: 28px !important; }
+  #intro .s2__stats > .sec__wrap { padding-top: 28px !important; padding-bottom: 28px !important; }
+}
